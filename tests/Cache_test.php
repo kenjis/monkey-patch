@@ -27,7 +27,7 @@ class Cache_test extends TestCase
 
     public function test_setCacheDir(): void
     {
-        $cache_dir = APPPATH . 'tests/_ci_phpunit_test/tmp/cache_test';
+        $cache_dir = __DIR__ . '/../tmp/cache_test';
         Cache::setCacheDir($cache_dir);
         $this->assertEquals(realpath($cache_dir), Cache::getCacheDir());
     }
@@ -62,8 +62,8 @@ class Cache_test extends TestCase
     public function test_writeTmpIncludePaths(): void
     {
         $list = [
-            APPPATH,
-            BASEPATH,
+            __DIR__ . '/../src/Exception',
+            __DIR__ . '/../src/Patcher',
         ];
         Cache::writeTmpIncludePaths($list);
 
@@ -74,7 +74,7 @@ class Cache_test extends TestCase
     public function test_writeTmpExcludePaths(): void
     {
         $list = [
-            APPPATH . 'test',
+            __DIR__ . '/tmp/test',
         ];
         Cache::writeTmpExcludePaths($list);
 

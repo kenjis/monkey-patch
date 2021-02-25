@@ -10,14 +10,16 @@ namespace Kenjis\MonkeyPatch;
  */
 class PathChecker_test extends TestCase
 {
+    private static $appPath = __DIR__ . '/../src/';
+
     public static function tearDownAfterClass(): void
     {
         PathChecker::setIncludePaths(
-            [APPPATH]
+            [self::$appPath]
         );
         PathChecker::setExcludePaths(
             [
-                APPPATH . 'tests/',
+                self::$appPath . 'tests/',
             ]
         );
     }
@@ -26,10 +28,10 @@ class PathChecker_test extends TestCase
     {
         PathChecker::setIncludePaths(
             [
-                APPPATH . 'controllers/',
+                self::$appPath . 'controllers/',
             ]
         );
-        $test = PathChecker::check(APPPATH . 'controllers/abc.php');
+        $test = PathChecker::check(self::$appPath . 'controllers/abc.php');
         $this->assertTrue($test);
     }
 
@@ -37,11 +39,11 @@ class PathChecker_test extends TestCase
     {
         PathChecker::setExcludePaths(
             [
-                APPPATH . 'controllers/sub/',
+                self::$appPath . 'controllers/sub/',
             ]
         );
         $test = PathChecker::check(
-            APPPATH . '/controllers/sub/abc.php'
+            self::$appPath . '/controllers/sub/abc.php'
         );
         $this->assertFalse($test);
     }
