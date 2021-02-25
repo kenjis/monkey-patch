@@ -15,8 +15,6 @@ use function token_get_all;
 
 use const T_EXIT;
 
-require __DIR__ . '/../Exception/ExitException.php';
-
 class ExitPatcher
 {
     public static function patch($source)
