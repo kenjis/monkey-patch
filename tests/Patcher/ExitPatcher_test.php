@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Kenjis\MonkeyPatch\Patcher;
 
-use TestCase;
+use Kenjis\MonkeyPatch\TestCase;
 
 /**
  * @group ci-phpunit-test

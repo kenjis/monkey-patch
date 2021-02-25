@@ -6,9 +6,9 @@ namespace Kenjis\MonkeyPatch\Patcher;
 
 use Kenjis\MonkeyPatch\MonkeyPatch;
 use Kenjis\MonkeyPatch\Patcher\FunctionPatcher\Proxy;
+use Kenjis\MonkeyPatch\TestCase;
 use LogicException;
 use ReflectionHelper;
-use TestCase;
 
 use function ob_end_clean;
 use function ob_start;

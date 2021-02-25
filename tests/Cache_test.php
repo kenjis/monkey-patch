@@ -6,7 +6,6 @@ namespace Kenjis\MonkeyPatch;
 
 use CIPHPUnitTest;
 use ReflectionHelper;
-use TestCase;
 
 use function file_exists;
 use function realpath;

@@ -6,7 +6,7 @@ namespace Kenjis\MonkeyPatch;
 
 use CIPHPUnitTest;
 use CIPHPUnitTestReflection;
-use TestCase;
+use Kenjis\PhpUnitHelper\ReflectionHelper;
 
 use function file_exists;
 use function unlink;

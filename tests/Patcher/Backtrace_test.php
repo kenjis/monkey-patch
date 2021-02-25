@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Kenjis\MonkeyPatch\Patcher;
 
+use Kenjis\MonkeyPatch\TestCase;
 use PHPUnit\Runner\Version;
 use stdClass;
-use TestCase;
 
 use function class_exists;
 use function debug_backtrace;

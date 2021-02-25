@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Kenjis\MonkeyPatch;
 
-use TestCase;
-
 /**
  * @group ci-phpunit-test
  * @group patcher
