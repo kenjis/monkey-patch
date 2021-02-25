@@ -170,7 +170,7 @@ EOL
         try {
             MonkeyPatch::patchFunction('redirect', null);
         } catch (LogicException $e) {
-            $this->assertContains(
+            $this->assertStringContainsString(
                 "Can't patch on 'redirect'. It is in blacklist.",
                 $e->getMessage()
             );
@@ -185,7 +185,7 @@ EOL
         try {
             MonkeyPatch::patchFunction('htmlspecialchars', null);
         } catch (LogicException $e) {
-            $this->assertContains(
+            $this->assertStringContainsString(
                 "Can't patch on 'htmlspecialchars'. It is not in whitelist.",
                 $e->getMessage()
             );
@@ -200,7 +200,7 @@ EOL
         try {
             Proxy::ksort([]);
         } catch (LogicException $e) {
-            $this->assertContains(
+            $this->assertStringContainsString(
                 "Can't patch on function 'ksort'.",
                 $e->getMessage()
             );
