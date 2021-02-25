@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Kenjis\MonkeyPatch;
 
-use CIPHPUnitTest;
 use Kenjis\PhpUnitHelper\ReflectionHelper;
 
 use function file_exists;
@@ -21,7 +20,9 @@ class Cache_test extends TestCase
     public static function tearDownAfterClass(): void
     {
         Cache::clearCache();
-        CIPHPUnitTest::setPatcherCacheDir();
+
+        $dir = __DIR__ . '/../tmp/cache';
+        MonkeyPatchManager::setCacheDir($dir);
     }
 
     public function test_setCacheDir(): void

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Kenjis\MonkeyPatch;
 
-use CIPHPUnitTest;
 use CIPHPUnitTestReflection;
 use Kenjis\PhpUnitHelper\ReflectionHelper;
 
@@ -31,7 +30,10 @@ class MonkeyPatchManager_test extends TestCase
     public static function tearDownAfterClass(): void
     {
         Cache::clearCache();
-        CIPHPUnitTest::setPatcherCacheDir();
+
+        $dir = __DIR__ . '/../tmp/cache';
+        MonkeyPatchManager::setCacheDir($dir);
+
         self::setPrivateProperty(MonkeyPatchManager::class, 'debug', self::$debug);
         self::setPrivateProperty(MonkeyPatchManager::class, 'log_file', self::$log_file);
 
@@ -55,8 +57,8 @@ class MonkeyPatchManager_test extends TestCase
 
     public function test_patch_miss_cache(): void
     {
-        $cache_dir = APPPATH . 'tests/_ci_phpunit_test/tmp/cache_test';
-        CIPHPUnitTest::setPatcherCacheDir($cache_dir);
+        $dir = __DIR__ . '/../tmp/cache_test';
+        MonkeyPatchManager::setCacheDir($dir);
 
         $cache_file = Cache::getSrcCacheFilePath(__FILE__);
         $this->assertFalse(file_exists($cache_file));
