@@ -45,6 +45,7 @@ EOL
 ,
                 <<<'EOL'
 <?php
+
 echo \__ConstProxy__::get('ENVIRONMENT');
 EOL
             ],
@@ -64,6 +65,7 @@ EOL
 ,
                 <<<'EOL'
 <?php
+
 function test($a = ENVIRONMENT)
 {
 }

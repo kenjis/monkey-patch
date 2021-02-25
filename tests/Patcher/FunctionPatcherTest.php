@@ -45,6 +45,7 @@ EOL
 ,
                 <<<'EOL'
 <?php
+
 \__FuncProxy__::mt_rand(1, 100);
 EOL
             ],
@@ -57,7 +58,8 @@ EOL
 ,
                 <<<'EOL'
 <?php
-exit();
+
+exit;
 EOL
             ],
 
@@ -70,7 +72,9 @@ EOL
 ,
                 <<<'EOL'
 <?php
+
 namespace Foo;
+
 \__FuncProxy__::mt_rand(1, 100);
 EOL
             ],
@@ -84,7 +88,9 @@ EOL
 ,
                 <<<'EOL'
 <?php
+
 namespace Foo;
+
 Bar\mt_rand(1, 100);
 EOL
             ],
@@ -128,6 +134,7 @@ EOL
 ,
                 <<<'EOL'
 <?php
+
 mt_rand(1, 100);
 \__FuncProxy__::time();
 EOL
@@ -156,6 +163,7 @@ EOL
 ,
                 <<<'EOL'
 <?php
+
 not_loaded_func();
 \__FuncProxy__::date(DATE_ATOM);
 EOL
