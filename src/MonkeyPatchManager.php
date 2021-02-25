@@ -315,6 +315,7 @@ class MonkeyPatchManager
     protected static function execPatchers($source)
     {
         $patched = false;
+
         foreach (self::$patcher_list as $classname) {
             $classname = 'Kenjis\MonkeyPatch\Patcher\\' . $classname;
             $patcher = new $classname();

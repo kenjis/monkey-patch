@@ -30,6 +30,7 @@ class MethodPatcher extends AbstractPatcher
     public const CODE = <<<'EOL'
 if (($__ret__ = \__PatchManager__::getReturn(__CLASS__, __FUNCTION__, func_get_args())) !== __GO_TO_ORIG__) return $__ret__;
 EOL;
+
     public const CODENORET = <<<'EOL'
 if (($__ret__ = \__PatchManager__::getReturn(__CLASS__, __FUNCTION__, func_get_args())) !== __GO_TO_ORIG__) return;
 EOL;
