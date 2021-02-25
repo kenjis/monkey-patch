@@ -7,8 +7,8 @@ namespace Kenjis\MonkeyPatch\Patcher;
 use Kenjis\MonkeyPatch\MonkeyPatch;
 use Kenjis\MonkeyPatch\Patcher\FunctionPatcher\Proxy;
 use Kenjis\MonkeyPatch\TestCase;
+use Kenjis\PhpUnitHelper\ReflectionHelper;
 use LogicException;
-use ReflectionHelper;
 
 use function ob_end_clean;
 use function ob_start;
@@ -19,6 +19,8 @@ use function ob_start;
  */
 class FunctionPatcher_test extends TestCase
 {
+    use ReflectionHelper;
+
     public function setUp(): void
     {
         $this->obj = new FunctionPatcher();

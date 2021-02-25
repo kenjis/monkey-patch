@@ -17,21 +17,23 @@ use function unlink;
  */
 class MonkeyPatchManager_test extends TestCase
 {
+    use ReflectionHelper;
+
     private static $debug;
     private static $log_file;
 
     public static function setUpBeforeClass(): void
     {
-        self::$debug = CIPHPUnitTestReflection::getPrivateProperty('MonkeyPatchManager', 'debug');
-        self::$log_file = CIPHPUnitTestReflection::getPrivateProperty('MonkeyPatchManager', 'log_file');
+        self::$debug = self::getPrivateProperty(MonkeyPatchManager::class, 'debug');
+        self::$log_file = self::getPrivateProperty(MonkeyPatchManager::class, 'log_file');
     }
 
     public static function tearDownAfterClass(): void
     {
         Cache::clearCache();
         CIPHPUnitTest::setPatcherCacheDir();
-        CIPHPUnitTestReflection::setPrivateProperty('MonkeyPatchManager', 'debug', self::$debug);
-        CIPHPUnitTestReflection::setPrivateProperty('MonkeyPatchManager', 'log_file', self::$log_file);
+        self::setPrivateProperty(MonkeyPatchManager::class, 'debug', self::$debug);
+        self::setPrivateProperty(MonkeyPatchManager::class, 'log_file', self::$log_file);
 
         unlink(__DIR__ . '/monkey-patch-debug.log');
     }
@@ -69,11 +71,11 @@ class MonkeyPatchManager_test extends TestCase
 
     public function test_log_file_path_configurable(): void
     {
-        $debug_method = CIPHPUnitTestReflection::getPrivateMethodInvoker('MonkeyPatchManager', 'setDebug');
+        $debug_method = self::getPrivateMethodInvoker(MonkeyPatchManager::class, 'setDebug');
         $debug_method(['debug' => true, 'log_file' => __DIR__ . '/monkey-patch-debug.log']);
 
-        $actual_debug = CIPHPUnitTestReflection::getPrivateProperty('MonkeyPatchManager', 'debug');
-        $actual_log_file = CIPHPUnitTestReflection::getPrivateProperty('MonkeyPatchManager', 'log_file');
+        $actual_debug = self::getPrivateProperty(MonkeyPatchManager::class, 'debug');
+        $actual_log_file = self::getPrivateProperty(MonkeyPatchManager::class, 'log_file');
         $this->assertTrue($actual_debug);
         $this->assertEquals(__DIR__ . '/monkey-patch-debug.log', $actual_log_file);
     }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Kenjis\MonkeyPatch;
 
 use CIPHPUnitTest;
-use ReflectionHelper;
+use Kenjis\PhpUnitHelper\ReflectionHelper;
 
 use function file_exists;
 use function realpath;
@@ -16,6 +16,8 @@ use function realpath;
  */
 class Cache_test extends TestCase
 {
+    use ReflectionHelper;
+
     public static function tearDownAfterClass(): void
     {
         Cache::clearCache();
@@ -83,7 +85,7 @@ class Cache_test extends TestCase
     {
         Cache::clearSrcCache();
         $this->assertFalse(file_exists(
-            ReflectionHelper::getPrivateProperty(
+            self::getPrivateProperty(
                 __NAMESPACE__ . '\Cache',
                 'src_cache_dir'
             )
@@ -94,7 +96,7 @@ class Cache_test extends TestCase
     {
         Cache::clearCache();
         $this->assertFalse(file_exists(
-            ReflectionHelper::getPrivateProperty(
+            self::getPrivateProperty(
                 __NAMESPACE__ . '\Cache',
                 'cache_dir'
             )
