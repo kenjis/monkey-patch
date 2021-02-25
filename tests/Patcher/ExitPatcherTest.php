@@ -6,7 +6,7 @@ namespace Kenjis\MonkeyPatch\Patcher;
 
 use Kenjis\MonkeyPatch\TestCase;
 
-class ExitPatcher_test extends TestCase
+class ExitPatcherTest extends TestCase
 {
     /**
      * @dataProvider provide_source

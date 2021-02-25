@@ -13,7 +13,7 @@ use LogicException;
 use function ob_end_clean;
 use function ob_start;
 
-class FunctionPatcher_test extends TestCase
+class FunctionPatcherTest extends TestCase
 {
     use ReflectionHelper;
 

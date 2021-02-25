@@ -6,7 +6,7 @@ namespace Kenjis\MonkeyPatch\Patcher;
 
 use Kenjis\MonkeyPatch\TestCase;
 
-class ConstantPatcher_test extends TestCase
+class ConstantPatcherTest extends TestCase
 {
     public function setUp(): void
     {

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Kenjis\MonkeyPatch;
 
-class PathChecker_test extends TestCase
+class PathCheckerTest extends TestCase
 {
     private static $appPath = __DIR__ . '/../src/';
 

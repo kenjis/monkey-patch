@@ -11,7 +11,7 @@ use TypeError;
 use function file_exists;
 use function unlink;
 
-class MonkeyPatchManager_test extends TestCase
+class MonkeyPatchManagerTest extends TestCase
 {
     use ReflectionHelper;
 

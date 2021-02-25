@@ -9,7 +9,7 @@ use Kenjis\PhpUnitHelper\ReflectionHelper;
 use function file_exists;
 use function realpath;
 
-class Cache_test extends TestCase
+class CacheTest extends TestCase
 {
     use ReflectionHelper;
 

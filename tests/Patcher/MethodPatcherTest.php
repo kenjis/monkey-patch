@@ -6,7 +6,7 @@ namespace Kenjis\MonkeyPatch\Patcher;
 
 use Kenjis\MonkeyPatch\TestCase;
 
-class MethodPatcher_test extends TestCase
+class MethodPatcherTest extends TestCase
 {
     public function setUp(): void
     {
