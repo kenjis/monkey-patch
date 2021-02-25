@@ -86,8 +86,10 @@ class PathChecker
         return self::$exclude_paths;
     }
 
-    public static function check($path)
+    public static function check(string $path)
     {
+        $path = (string) realpath($path);
+
         // Windows
         if (DIRECTORY_SEPARATOR === '\\') {
             $path = str_replace('/', '\\', $path);

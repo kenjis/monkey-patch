@@ -14,9 +14,7 @@ class PathChecker_test extends TestCase
             [self::$appPath]
         );
         PathChecker::setExcludePaths(
-            [
-                self::$appPath . 'tests/',
-            ]
+            [__DIR__]
         );
     }
 
@@ -24,10 +22,10 @@ class PathChecker_test extends TestCase
     {
         PathChecker::setIncludePaths(
             [
-                self::$appPath . 'controllers/',
+                self::$appPath . 'Patcher/',
             ]
         );
-        $test = PathChecker::check(self::$appPath . 'controllers/abc.php');
+        $test = PathChecker::check(self::$appPath . 'Patcher/ExitPatcher.php');
         $this->assertTrue($test);
     }
 
@@ -35,11 +33,11 @@ class PathChecker_test extends TestCase
     {
         PathChecker::setExcludePaths(
             [
-                self::$appPath . 'controllers/sub/',
+                self::$appPath . 'Patcher/ConstantPatcher/',
             ]
         );
         $test = PathChecker::check(
-            self::$appPath . '/controllers/sub/abc.php'
+            self::$appPath . '/Patcher/ConstantPatcher/Proxy.php'
         );
         $this->assertFalse($test);
     }
