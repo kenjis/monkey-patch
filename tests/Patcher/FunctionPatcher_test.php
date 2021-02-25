@@ -209,12 +209,11 @@ EOL
         ob_end_clean();
     }
 
-    /**
-     * @expectedException        LogicException
-     * @expectedExceptionMessage You can't add to whitelist after initialization
-     */
     public function test_addWhitelists(): void
     {
+        $this->expectException(LogicException::class);
+        $this->expectExceptionMessage("You can't add to whitelist after initialization");
+
         FunctionPatcher::addWhitelists(['mt_rand']);
     }
 }

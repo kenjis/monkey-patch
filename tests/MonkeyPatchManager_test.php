@@ -38,21 +38,18 @@ class MonkeyPatchManager_test extends TestCase
         unlink(__DIR__ . '/monkey-patch-debug.log');
     }
 
-    /**
-     * @expectedException RuntimeException
-     * @expectedExceptionMessage Failed to create folder:
-     */
     public function test_setCacheDir_error(): void
     {
+        $this->expectException(TypeError::class);
+
         MonkeyPatchManager::setCacheDir(null);
     }
 
-    /**
-     * @expectedException LogicException
-     * @expectedExceptionMessage Can't read 'dummy'
-     */
     public function test_patch_error_cannot_read_file(): void
     {
+        $this->expectException(LogicException::class);
+        $this->expectExceptionMessage("Can't read 'dummy'");
+
         MonkeyPatchManager::patch('dummy');
     }
 
