@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Kenjis\MonkeyPatch;
 
-use CIPHPUnitTestReflection;
 use Kenjis\PhpUnitHelper\ReflectionHelper;
+use LogicException;
+use TypeError;
 
 use function file_exists;
 use function unlink;
