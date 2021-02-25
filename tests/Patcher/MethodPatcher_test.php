@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Kenjis\MonkeyPatch\Patcher;
 
 use TestCase;
@@ -10,24 +12,25 @@ use TestCase;
  */
 class MethodPatcher_test extends TestCase
 {
-	public function setUp()
-	{
-		$this->obj = new MethodPatcher();
-	}
+    public function setUp(): void
+    {
+        $this->obj = new MethodPatcher();
+    }
 
-	/**
-	 * @dataProvider provide_source
-	 */
-	public function test_patch($source, $expected)
-	{
-		list($actual,) = $this->obj->patch($source);
-		$this->assertEquals($expected, $actual);
-	}
+    /**
+     * @dataProvider provide_source
+     */
+    public function test_patch($source, $expected): void
+    {
+        [$actual] = $this->obj->patch($source);
+        $this->assertEquals($expected, $actual);
+    }
 
-	public function provide_source()
-	{
-		return [
-[<<<'EOL'
+    public function provide_source()
+    {
+        return [
+            [
+                <<<'EOL'
 <?php
 class Foo
 {
@@ -38,7 +41,7 @@ class Foo
 }
 EOL
 ,
-<<<'EOL'
+                <<<'EOL'
 <?php
 class Foo
 {
@@ -48,9 +51,10 @@ class Foo
 	}
 }
 EOL
-],
+            ],
 
-[<<<'EOL'
+            [
+                <<<'EOL'
 <?php
 class Foo
 {
@@ -60,7 +64,7 @@ class Foo
 }
 EOL
 ,
-<<<'EOL'
+                <<<'EOL'
 <?php
 class Foo
 {
@@ -69,9 +73,10 @@ class Foo
 	}
 }
 EOL
-],
+            ],
 
-[<<<'EOL'
+            [
+                <<<'EOL'
 <?php
 class Foo
 {
@@ -81,7 +86,7 @@ class Foo
 }
 EOL
 ,
-<<<'EOL'
+                <<<'EOL'
 <?php
 class Foo
 {
@@ -90,9 +95,10 @@ class Foo
 	}
 }
 EOL
-],
+            ],
 
-[<<<'EOL'
+            [
+                <<<'EOL'
 <?php
 abstract class Foo
 {
@@ -104,7 +110,7 @@ abstract class Foo
 }
 EOL
 ,
-<<<'EOL'
+                <<<'EOL'
 <?php
 abstract class Foo
 {
@@ -115,9 +121,10 @@ abstract class Foo
 	}
 }
 EOL
-],
+            ],
 
-[<<<'EOL'
+            [
+                <<<'EOL'
 <?php
 interface Foo
 {
@@ -125,16 +132,17 @@ interface Foo
 }
 EOL
 ,
-<<<'EOL'
+                <<<'EOL'
 <?php
 interface Foo
 {
 	public function bar();
 }
 EOL
-],
+            ],
 
-[<<<'EOL'
+            [
+                <<<'EOL'
 <?php
 class Foo
 {
@@ -145,7 +153,7 @@ class Foo
 }
 EOL
 ,
-<<<'EOL'
+                <<<'EOL'
 <?php
 class Foo
 {
@@ -155,7 +163,7 @@ class Foo
 	}
 }
 EOL
-],
-		];
-	}
+            ],
+        ];
+    }
 }
