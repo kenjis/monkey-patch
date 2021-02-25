@@ -100,12 +100,11 @@ class MonkeyPatchManager
 
     protected static function setDir(array $config): void
     {
-        if (isset($config['root_dir'])) {
-            Cache::setProjectRootDir($config['root_dir']);
-        } else {
-            // APPPATH is constant in CodeIgniter
-            Cache::setProjectRootDir(APPPATH . '../');
+        if (! isset($config['root_dir'])) {
+            throw new LogicException('You have to set "root_dir"');
         }
+
+        Cache::setProjectRootDir($config['root_dir']);
 
         if (! isset($config['cache_dir'])) {
             throw new LogicException('You have to set "cache_dir"');
