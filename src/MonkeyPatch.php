@@ -2,12 +2,6 @@
 
 declare(strict_types=1);
 
-/**
- * Part of ci-phpunit-test
- *
- * @link       https://github.com/kenjis/ci-phpunit-test
- */
-
 namespace Kenjis\MonkeyPatch;
 
 use Kenjis\MonkeyPatch\Patcher\ConstantPatcher\Proxy as ConstProxy;
