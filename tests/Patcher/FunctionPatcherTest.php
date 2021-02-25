@@ -96,7 +96,7 @@ EOL
      */
     public function test_addBlacklist($source, $expected): void
     {
-        ReflectionHelper::setPrivateProperty(
+        self::setPrivateProperty(
             'Kenjis\MonkeyPatch\Patcher\FunctionPatcher',
             'lock_function_list',
             false
@@ -109,7 +109,7 @@ EOL
 
         FunctionPatcher::removeBlacklist('mt_rand');
 
-        ReflectionHelper::setPrivateProperty(
+        self::setPrivateProperty(
             'Kenjis\MonkeyPatch\Patcher\FunctionPatcher',
             'lock_function_list',
             true
