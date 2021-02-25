@@ -108,8 +108,8 @@ EOL;
             $token = $token[1];
         }
 
-        //Loop backwards though the start of the function block till you either find "void" or the end of the
-        //parameters declaration.
+        // Loop backwards though the start of the function block till you either find "void"
+        // or the end of the parameters declaration.
         while ($token !== ')') {
             if (strpos($token, 'void') !== false) {
                 return true;
