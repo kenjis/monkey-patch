@@ -13,10 +13,6 @@ use LogicException;
 use function ob_end_clean;
 use function ob_start;
 
-/**
- * @group ci-phpunit-test
- * @group patcher
- */
 class FunctionPatcher_test extends TestCase
 {
     use ReflectionHelper;

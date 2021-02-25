@@ -6,10 +6,6 @@ namespace Kenjis\MonkeyPatch\Patcher;
 
 use Kenjis\MonkeyPatch\TestCase;
 
-/**
- * @group ci-phpunit-test
- * @group patcher
- */
 class ExitPatcher_test extends TestCase
 {
     /**

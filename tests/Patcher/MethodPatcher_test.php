@@ -6,10 +6,6 @@ namespace Kenjis\MonkeyPatch\Patcher;
 
 use Kenjis\MonkeyPatch\TestCase;
 
-/**
- * @group ci-phpunit-test
- * @group patcher
- */
 class MethodPatcher_test extends TestCase
 {
     public function setUp(): void

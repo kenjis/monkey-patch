@@ -14,10 +14,6 @@ use function version_compare;
 
 use const PHP_VERSION;
 
-/**
- * @group ci-phpunit-test
- * @group patcher
- */
 class Backtrace_test extends TestCase
 {
     public function test_getInfo_FunctionPatcher(): void

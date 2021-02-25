@@ -11,10 +11,6 @@ use TypeError;
 use function file_exists;
 use function unlink;
 
-/**
- * @group ci-phpunit-test
- * @group patcher
- */
 class MonkeyPatchManager_test extends TestCase
 {
     use ReflectionHelper;

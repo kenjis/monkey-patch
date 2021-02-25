@@ -4,10 +4,6 @@ declare(strict_types=1);
 
 namespace Kenjis\MonkeyPatch;
 
-/**
- * @group ci-phpunit-test
- * @group patcher
- */
 class PathChecker_test extends TestCase
 {
     private static $appPath = __DIR__ . '/../src/';

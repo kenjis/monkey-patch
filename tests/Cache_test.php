@@ -9,10 +9,6 @@ use Kenjis\PhpUnitHelper\ReflectionHelper;
 use function file_exists;
 use function realpath;
 
-/**
- * @group ci-phpunit-test
- * @group patcher
- */
 class Cache_test extends TestCase
 {
     use ReflectionHelper;
