@@ -48,4 +48,6 @@ MonkeyPatchManager::init([
     'functions_to_patch' => [
       //'random_string',
     ],
+    // Debug log file
+    'log_file' => __DIR__ . '/../tmp/monkey-patch-debug.log',
 ]);
