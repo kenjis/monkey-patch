@@ -14,13 +14,14 @@ use Kenjis\MonkeyPatch\MonkeyPatchManager;
 use PhpParser\Lexer;
 use PhpParser\NodeTraverser;
 use PhpParser\ParserFactory;
+use PhpParser\PrettyPrinter;
 
 abstract class AbstractPatcher
 {
     protected $node_visitor;
     public static $replacement;
 
-    public function patch($source)
+    public function patch(string $source): array
     {
         $patched = false;
         static::$replacement = [];
@@ -36,11 +37,16 @@ abstract class AbstractPatcher
         $traverser->addVisitor($this->node_visitor);
 
         $ast_orig = $parser->parse($source);
-        $traverser->traverse($ast_orig);
+        $prettyPrinter = new PrettyPrinter\Standard();
+        $source_ = $prettyPrinter->prettyPrintFile($ast_orig);
+
+        $ast = $parser->parse($source);
+        $traverser->traverse($ast);
 
         if (static::$replacement !== []) {
             $patched = true;
-            $new_source = static::generateNewSource($source);
+
+            $new_source = static::generateNewSource($source_);
         } else {
             $new_source = $source;
         }

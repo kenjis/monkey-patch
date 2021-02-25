@@ -57,12 +57,7 @@ class NodeVisitor extends NodeVisitorAbstract
         }
 
         if (! ConstantPatcher::isBlacklisted((string) $node->name)) {
-            $replacement = new FullyQualified('\__ConstProxy__::get(\'' . (string) $node->name . '\')');
-
-            $pos = $node->getAttribute('startTokenPos');
-            ConstantPatcher::$replacement[$pos] =
-                '\__ConstProxy__::get(\'' . (string) $node->name . '\')';
-
+            $replacement = new FullyQualified('__ConstProxy__::get(\'' . (string) $node->name . '\')');
             $node->name = $replacement;
         }
     }
