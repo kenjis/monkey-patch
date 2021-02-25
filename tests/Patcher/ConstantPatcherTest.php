@@ -8,6 +8,9 @@ use Kenjis\MonkeyPatch\TestCase;
 
 class ConstantPatcherTest extends TestCase
 {
+    /** @var ConstantPatcher */
+    private $obj;
+
     public function setUp(): void
     {
         $this->obj = new ConstantPatcher();

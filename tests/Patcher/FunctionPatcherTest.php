@@ -17,6 +17,9 @@ class FunctionPatcherTest extends TestCase
 {
     use ReflectionHelper;
 
+    /** @var FunctionPatcher */
+    private $obj;
+
     public function setUp(): void
     {
         $this->obj = new FunctionPatcher();

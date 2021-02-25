@@ -8,6 +8,9 @@ use Kenjis\MonkeyPatch\TestCase;
 
 class MethodPatcherTest extends TestCase
 {
+    /** @var MethodPatcher */
+    private $obj;
+
     public function setUp(): void
     {
         $this->obj = new MethodPatcher();
