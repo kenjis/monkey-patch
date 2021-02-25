@@ -114,9 +114,9 @@ class IncludeStream
         }
 
         if (isset($this->context)) {
-            $this->resource = fopen($path, $mode, $options, $this->context);
+            $this->resource = fopen($path, $mode, (bool) $options, $this->context);
         } else {
-            $this->resource = fopen($path, $mode, $options);
+            $this->resource = fopen($path, $mode, (bool) $options);
         }
 
         $this->wrap();
@@ -224,9 +224,9 @@ class IncludeStream
     {
         $this->unwrap();
         if (isset($this->context)) {
-            $result = mkdir($path, $mode, $options, $this->context);
+            $result = mkdir($path, $mode, (bool) $options, $this->context);
         } else {
-            $result = mkdir($path, $mode, $options);
+            $result = mkdir($path, $mode, (bool) $options);
         }
 
         $this->wrap();

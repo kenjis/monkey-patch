@@ -92,7 +92,7 @@ class Cache
         return self::$src_cache_dir . '/' . $relative_path;
     }
 
-    protected static function createDir($dir): void
+    protected static function createDir(string $dir): void
     {
         if (! is_dir($dir)) {
             if (! @mkdir($dir, 0777, true)) {
@@ -290,9 +290,9 @@ class Cache
 
         foreach ($iterator as $file) {
             if ($file->isDir()) {
-                rmdir($file);
+                rmdir((string) $file);
             } else {
-                unlink($file);
+                unlink((string) $file);
             }
         }
 
