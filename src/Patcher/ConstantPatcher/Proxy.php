@@ -37,7 +37,7 @@ class Proxy
      *
      * @throws LogicException
      */
-    public static function patch(string $constant, $value, ?string $class_method = null): void
+    public static function patch(string $constant, $value, string $class_method = ''): void
     {
         self::$patches[$constant] = $value;
         self::$patches_to_apply[$constant] = strtolower($class_method);

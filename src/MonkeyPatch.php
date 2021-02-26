@@ -37,7 +37,7 @@ class MonkeyPatch
      *
      * @param mixed $value
      */
-    public static function patchConstant(string $constant, $value, ?string $class_method = null): void
+    public static function patchConstant(string $constant, $value, string $class_method = ''): void
     {
         ConstProxy::patch($constant, $value, $class_method);
     }
