@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Kenjis\MonkeyPatch\MonkeyPatchManager;
+
 require __DIR__ . '/../vendor/autoload.php';
 
 /**
@@ -23,7 +25,7 @@ require __DIR__ . '/functions/exit__.php';
 
 const __GO_TO_ORIG__ = '__GO_TO_ORIG__';
 
-class_alias('Kenjis\MonkeyPatch\MonkeyPatchManager', 'MonkeyPatchManager');
+class_alias(MonkeyPatchManager::class, 'MonkeyPatchManager');
 
 // And you have to configure for your application
 MonkeyPatchManager::init([
