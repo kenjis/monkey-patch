@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Kenjis\MonkeyPatch\Exception\ExitException;
 use Kenjis\MonkeyPatch\MonkeyPatchManager;
 
 require __DIR__ . '/../vendor/autoload.php';
@@ -29,17 +30,23 @@ class_alias(MonkeyPatchManager::class, 'MonkeyPatchManager');
 
 // And you have to configure for your application
 MonkeyPatchManager::init([
-  // PHP Parser: PREFER_PHP7, PREFER_PHP5, ONLY_PHP7, ONLY_PHP5
+    // If you want debug log, set `debug` true, and optionally you can set the log file path
+    'debug' => true,
+    'log_file' => __DIR__ . '/../tmp/monkey-patch-debug.log',
+    // PHP Parser: PREFER_PHP7, PREFER_PHP5, ONLY_PHP7, ONLY_PHP5
     'php_parser' => 'PREFER_PHP7',
-  // Project root directory
+    // Project root directory
     'root_dir' => __DIR__ . '/../',
-  // Cache directory
     'cache_dir' => __DIR__ . '/../tmp/cache',
-  // Directories to patch on source files
-    'include_paths' => [__DIR__],
-  // Excluding directories to patch
+    // Directories to patch source files
+    'include_paths' => [
+        __DIR__,
+        __DIR__ . '/../tests/fixture/App',
+    ],
+    // Excluding directories to patch
+    // If you want to patch files inside paths below, you must add the directory starting with '-'
     'exclude_paths' => [],
-  // All patchers you use
+    // All patchers you use
     'patcher_list' => [
         'ExitPatcher',
         'FunctionPatcher',
@@ -48,8 +55,7 @@ MonkeyPatchManager::init([
     ],
     // Additional functions to patch
     'functions_to_patch' => [
-      //'random_string',
+        //'random_string',
     ],
-    // Debug log file
-    'log_file' => __DIR__ . '/../tmp/monkey-patch-debug.log',
+    'exit_exception_classname' => ExitException::class,
 ]);
