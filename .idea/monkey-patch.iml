@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="Kenjis\MonkeyPatch\" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" packagePrefix="Kenjis\MonkeyPatch\" />
       <sourceFolder url="file://$MODULE_DIR$/tests/Fake" isTestSource="true" packagePrefix="Kenjis\MonkeyPatch\" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/fixture/App" isTestSource="true" packagePrefix="App\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phar-io/version" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phar-io/manifest" />

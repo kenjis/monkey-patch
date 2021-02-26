@@ -27,7 +27,8 @@
             "Kenjis\\MonkeyPatch\\": [
                 "tests/",
                 "tests/Fake"
-            ]
+            ],
+            "App\\": "tests/fixture/App"
         }
     },
     "scripts": {
