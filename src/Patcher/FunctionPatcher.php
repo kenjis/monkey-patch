@@ -76,7 +76,6 @@ class FunctionPatcher extends AbstractPatcher
         'show_error',
         'redirect',
     ];
-    public static $replacement;
 
     public function __construct()
     {

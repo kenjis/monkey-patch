@@ -26,7 +26,6 @@ class ConstantPatcher extends AbstractPatcher
         'false',
         'null',
     ];
-    public static $replacement;
 
     public function __construct()
     {
