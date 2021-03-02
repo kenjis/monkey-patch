@@ -30,7 +30,9 @@ class NodeVisitor extends NodeVisitorAbstract
 
         // I don't know why CODE_NO_RET is used only when return type void is stated.
         // But this conforms to the specification of ci-phpunit-test.
-        if ($node->returnType !== null && $node->returnType->name === 'void') {
+        if (isset($node->returnType->name) && $node->returnType->name === 'void') {
+            $ast = $parser->parse('<?php ' . MethodPatcher::CODE_NO_RET);
+        } elseif (isset($node->returnType->parts) && $node->returnType->parts[0] === 'void') {
             $ast = $parser->parse('<?php ' . MethodPatcher::CODE_NO_RET);
         } else {
             $ast = $parser->parse('<?php ' . MethodPatcher::CODE);
