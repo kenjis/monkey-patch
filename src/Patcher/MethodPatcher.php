@@ -31,7 +31,7 @@ class MethodPatcher extends AbstractPatcher
 if (($__ret__ = \__PatchManager__::getReturn(__CLASS__, __FUNCTION__, func_get_args())) !== __GO_TO_ORIG__) return $__ret__;
 EOL;
 
-    public const CODENORET = <<<'EOL'
+    public const CODE_NO_RET = <<<'EOL'
 if (($__ret__ = \__PatchManager__::getReturn(__CLASS__, __FUNCTION__, func_get_args())) !== __GO_TO_ORIG__) return;
 EOL;
 
@@ -69,7 +69,7 @@ EOL;
             if (is_string($token)) {
                 if ($start_method && $token === '{') {
                     if (self::isVoidFunction($tokens, $key)) {
-                        $new_source .= '{ ' . self::CODENORET;
+                        $new_source .= '{ ' . self::CODE_NO_RET;
                     } else {
                         $new_source .= '{ ' . self::CODE;
                     }
