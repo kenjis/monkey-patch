@@ -24,7 +24,6 @@ abstract class AbstractPatcher
     public function patch(string $source): array
     {
         $patched = false;
-        static::$replacement = [];
 
         $parser = (new ParserFactory())
             ->create(
@@ -43,12 +42,10 @@ abstract class AbstractPatcher
         $ast = $parser->parse($source);
         $traverser->traverse($ast);
 
-        if (static::$replacement !== []) {
-            $patched = true;
+        $new_source = $prettyPrinter->prettyPrintFile($ast);
 
-            $new_source = static::generateNewSource($source_);
-        } else {
-            $new_source = $source;
+        if ($source_ !== $new_source) {
+            $patched = true;
         }
 
         return [
