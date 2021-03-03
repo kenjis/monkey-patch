@@ -287,7 +287,8 @@ class MonkeyPatchManager
         }
 
         // Check cache file
-        if ($cache_file = Cache::getValidSrcCachePath($path)) {
+        $cache_file = Cache::getValidSrcCachePath($path);
+        if ($cache_file) {
             self::log('cache_hit: ' . $path);
 
             return fopen($cache_file, 'r');
