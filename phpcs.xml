@@ -56,4 +56,9 @@
             <property name="maxLinesCountBeforeWithoutComment" value="0"/>
         </properties>
     </rule>
+
+    <!-- Exclude rules -->
+    <rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">
+        <exclude-pattern>*/tests/*</exclude-pattern>
+    </rule>
 </ruleset>
