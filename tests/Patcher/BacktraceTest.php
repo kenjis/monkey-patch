@@ -50,7 +50,7 @@ class BacktraceTest extends TestCase
         $this->assertNull($info['function']);
     }
 
-    private function is_phpunit_71_and_greater()
+    private function is_phpunit_71_and_greater(): bool
     {
         if (class_exists('PHPUnit\Runner\Version')) {
             if (version_compare(Version::series(), '7.1') >= 0) {
@@ -61,7 +61,7 @@ class BacktraceTest extends TestCase
         return false;
     }
 
-    private function is_phpunit_60_and_greater()
+    private function is_phpunit_60_and_greater(): bool
     {
         if (class_exists('PHPUnit\Runner\Version')) {
             if (version_compare(Version::series(), '6.0') >= 0) {
@@ -72,7 +72,10 @@ class BacktraceTest extends TestCase
         return false;
     }
 
-    public function provide_PHP5_trace()
+    /**
+     * @return array<int, array<string, mixed>>
+     */
+    public function provide_PHP5_trace(): array
     {
         return [
             0 =>
@@ -124,7 +127,10 @@ class BacktraceTest extends TestCase
         ];
     }
 
-    public function provide_PHP7_trace()
+    /**
+     * @return array<int, array<string, mixed>>
+     */
+    public function provide_PHP7_trace(): array
     {
         return [
             0 =>

@@ -37,7 +37,10 @@ use const FILE_APPEND;
 
 class MonkeyPatchManager
 {
+    /** @var bool */
     public static $debug = false;
+
+    /** @var int */
     private static $php_parser = ParserFactory::PREFER_PHP5;
 
     /**
@@ -46,11 +49,15 @@ class MonkeyPatchManager
      *
      * @var string|null */
     public static $log_file = null;
+
+    /** @var bool */
     private static $load_patchers = false;
+
+    /** @var class-string */
     private static $exit_exception_classname =
         'Kenjis\MonkeyPatch\Exception\ExitException';
 
-    /** @var array list of patcher classname */
+    /** @var string[] list of patcher classname */
     private static $patcher_list = [
         'ExitPatcher',
         'FunctionPatcher',
@@ -58,7 +65,7 @@ class MonkeyPatchManager
         'ConstantPatcher',
     ];
 
-    public static function log($message): void
+    public static function log(string $message): void
     {
         if (! self::$debug) {
             return;
@@ -71,7 +78,10 @@ class MonkeyPatchManager
         file_put_contents(self::$log_file, $log, FILE_APPEND);
     }
 
-    public static function setExitExceptionClassname($name): void
+    /**
+     * @param class-string $name
+     */
+    public static function setExitExceptionClassname(string $name): void
     {
         self::$exit_exception_classname = $name;
     }
@@ -238,7 +248,7 @@ class MonkeyPatchManager
         self::$patcher_list = $list;
     }
 
-    public static function setCacheDir($dir): void
+    public static function setCacheDir(string $dir): void
     {
         Cache::setCacheDir($dir);
     }
@@ -315,7 +325,10 @@ class MonkeyPatchManager
         self::$load_patchers = true;
     }
 
-    protected static function execPatchers($source)
+    /**
+     * @return array{0: string, 1: bool}
+     */
+    protected static function execPatchers(string $source): array
     {
         $patched = false;
 

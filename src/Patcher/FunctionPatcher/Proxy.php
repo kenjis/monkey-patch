@@ -38,9 +38,16 @@ use function var_export;
 
 class Proxy
 {
+    /** @var array */
     private static $patches = [];
+
+    /** @var array */
     private static $patches_to_apply = [];
+
+    /** @var array */
     private static $expected_invocations = [];
+
+    /** @var array */
     private static $invocations = [];
 
     /**
@@ -223,7 +230,7 @@ class Proxy
         }
     }
 
-    protected static function outputMessage($msg): void
+    protected static function outputMessage(string $msg): void
     {
         $red_begin = "\033[41m\033[37m";
         $red_end   = "\033[0m";
@@ -251,9 +258,12 @@ class Proxy
         }
     }
 
+    /**
+     * @return false|mixed|string
+     */
     public static function openssl_random_pseudo_bytes(
-        $length,
-        &$crypto_strong = null
+        int $length,
+        ?bool &$crypto_strong = null
     ) {
         $function = 'openssl_random_pseudo_bytes';
         $arguments = [$length, $crypto_strong];

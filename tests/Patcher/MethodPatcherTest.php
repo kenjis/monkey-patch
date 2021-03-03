@@ -19,13 +19,16 @@ class MethodPatcherTest extends TestCase
     /**
      * @dataProvider provide_source
      */
-    public function test_patch($source, $expected): void
+    public function test_patch(string $source, string $expected): void
     {
         [$actual] = $this->obj->patch($source);
         $this->assertEquals($expected, $actual);
     }
 
-    public function provide_source()
+    /**
+     * @return string[][]
+     */
+    public function provide_source(): array
     {
         return [
             [

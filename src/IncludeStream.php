@@ -11,7 +11,7 @@ declare(strict_types=1);
  * @see https://github.com/kenjis/monkey-patch
  */
 
-/**
+/*
  * Copyright for Original Code
  *
  * @link       http://antecedent.github.com/patchwork

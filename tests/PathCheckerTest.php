@@ -6,6 +6,7 @@ namespace Kenjis\MonkeyPatch;
 
 class PathCheckerTest extends TestCase
 {
+    /** @var string */
     private static $appPath = __DIR__ . '/../src/';
 
     public static function tearDownAfterClass(): void
