@@ -26,9 +26,8 @@ class MonkeyPatch
      *
      * @param string $function     function name
      * @param mixed  $return_value return value
-     * @param string $class_name   class::method to apply this patch
      */
-    public static function patchFunction(string $function, $return_value, $class_method = null): void
+    public static function patchFunction(string $function, $return_value, ?string $class_method = null): void
     {
         Proxy::patch__($function, $return_value, $class_method);
     }
@@ -62,7 +61,7 @@ class MonkeyPatch
     /**
      * Patch on class method
      *
-     * @param array $params [method_name => return_value]
+     * @param array<string, mixed> $params [method_name => return_value]
      */
     public static function patchMethod(string $class, array $params): void
     {
@@ -77,7 +76,7 @@ class MonkeyPatch
         PatchManager::clear();
     }
 
-    protected static function getClassname($class_method)
+    protected static function getClassname(string $class_method): string
     {
         if (strpos($class_method, '::') === false) {
             return 'Kenjis\MonkeyPatch\Patcher\FunctionPatcher\Proxy';
@@ -87,9 +86,9 @@ class MonkeyPatch
     }
 
     /**
-     * @param string $class_method class::method or function name
-     * @param int    $times        times
-     * @param array  $params       parameters
+     * @param string   $class_method class::method or function name
+     * @param int      $times        times
+     * @param ?mixed[] $params       parameters
      */
     public static function verifyInvokedMultipleTimes(
         string $class_method,
@@ -105,8 +104,8 @@ class MonkeyPatch
     }
 
     /**
-     * @param string $class_method class::method or function name
-     * @param array  $params       parameters
+     * @param string   $class_method class::method or function name
+     * @param ?mixed[] $params       parameters
      */
     public static function verifyInvoked(string $class_method, ?array $params = null): void
     {
@@ -119,8 +118,8 @@ class MonkeyPatch
     }
 
     /**
-     * @param string $class_method class::method or function name
-     * @param array  $params       parameters
+     * @param string   $class_method class::method or function name
+     * @param ?mixed[] $params       parameters
      */
     public static function verifyInvokedOnce(string $class_method, ?array $params = null): void
     {
@@ -133,8 +132,8 @@ class MonkeyPatch
     }
 
     /**
-     * @param string $class_method class::method or function name
-     * @param array  $params       parameters
+     * @param string   $class_method class::method or function name
+     * @param ?mixed[] $params       parameters
      */
     public static function verifyNeverInvoked(string $class_method, ?array $params = null): void
     {

@@ -17,9 +17,18 @@ use RuntimeException;
 
 class ExitException extends RuntimeException
 {
+    /** @var string */
     public $file;
+
+    /** @var int */
     public $line;
+
+    /** @var string */
     public $class;
+
+    /** @var string */
     public $method;
+
+    /** @var string|int|null */
     public $exit_status;
 }

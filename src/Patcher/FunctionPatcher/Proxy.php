@@ -56,13 +56,13 @@ class Proxy
      * This method has '__' suffix, because if it matches real function name,
      * '__callStatic()' catch it.
      *
-     * @param string $function     function name
-     * @param mixed  $return_value return value or callable
-     * @param string $class_name   class::method to apply this patch
+     * @param string  $function     function name
+     * @param mixed   $return_value return value or callable
+     * @param ?string $class_name   class::method to apply this patch
      *
      * @throws LogicException
      */
-    public static function patch__(string $function, $return_value, $class_method = null): void
+    public static function patch__(string $function, $return_value, ?string $class_method = null): void
     {
         $function = strtolower($function);
 
@@ -98,7 +98,10 @@ class Proxy
         self::$invocations = [];
     }
 
-    public static function setExpectedInvocations($function, $times, $params): void
+    /**
+     * @param mixed[] $params
+     */
+    public static function setExpectedInvocations(string $function, int $times, array $params): void
     {
         self::$expected_invocations[strtolower($function)][] = [$params, $times];
     }
@@ -108,7 +111,10 @@ class Proxy
         InvocationVerifier::verify(self::$expected_invocations, self::$invocations);
     }
 
-    protected static function logInvocation($function, $arguments): void
+    /**
+     * @param mixed[] $arguments
+     */
+    protected static function logInvocation(string $function, array $arguments): void
     {
         if (MonkeyPatchManager::$debug) {
             $trace = debug_backtrace();
@@ -134,7 +140,7 @@ class Proxy
         }
     }
 
-    protected static function checkCalledMethod($function)
+    protected static function checkCalledMethod(string $function): bool
     {
         $trace = debug_backtrace();
         $info = Backtrace::getInfo('FunctionPatcher', $trace);
@@ -150,7 +156,10 @@ class Proxy
         return self::$patches_to_apply[$function] === $class_method;
     }
 
-    public static function __callStatic($function, array $arguments)
+    /**
+     * @return false|mixed
+     */
+    public static function __callStatic(string $function, array $arguments)
     {
         $function = strtolower($function);
 
@@ -193,7 +202,7 @@ class Proxy
         return call_user_func_array($function, $arguments);
     }
 
-    protected static function checkPassedByReference($function): void
+    protected static function checkPassedByReference(string $function): void
     {
         $ref_func = new ReflectionFunction($function);
 

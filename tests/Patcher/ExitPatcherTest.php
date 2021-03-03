@@ -11,13 +11,16 @@ class ExitPatcherTest extends TestCase
     /**
      * @dataProvider provide_source
      */
-    public function test_die($source, $expected): void
+    public function test_die(string $source, string $expected): void
     {
         [$actual] = ExitPatcher::patch($source);
         $this->assertEquals($expected, $actual);
     }
 
-    public function provide_source()
+    /**
+     * @return string[][]
+     */
+    public function provide_source(): array
     {
         return [
             [

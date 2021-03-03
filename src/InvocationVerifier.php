@@ -19,6 +19,10 @@ use function count;
 
 class InvocationVerifier
 {
+    /**
+     * @param array<string, mixed> $expected_invocations
+     * @param array<string, mixed> $invocations
+     */
     public static function verify(array $expected_invocations, array $invocations): void
     {
         if ($expected_invocations === []) {

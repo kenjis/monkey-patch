@@ -15,7 +15,10 @@ class MonkeyPatchManagerTest extends TestCase
 {
     use ReflectionHelper;
 
+    /** @var bool */
     private static $debug;
+
+    /** @var string */
     private static $log_file;
 
     public static function setUpBeforeClass(): void

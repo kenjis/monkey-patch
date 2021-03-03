@@ -28,13 +28,16 @@ class FunctionPatcherTest extends TestCase
     /**
      * @dataProvider provide_source
      */
-    public function test_patch($source, $expected): void
+    public function test_patch(string $source, string $expected): void
     {
         [$actual] = $this->obj->patch($source);
         $this->assertEquals($expected, $actual);
     }
 
-    public function provide_source()
+    /**
+     * @return string[][]
+     */
+    public function provide_source(): array
     {
         return [
             [
@@ -100,7 +103,7 @@ EOL
     /**
      * @dataProvider provide_source_blacklist
      */
-    public function test_addBlacklist($source, $expected): void
+    public function test_addBlacklist(string $source, string $expected): void
     {
         self::setPrivateProperty(
             'Kenjis\MonkeyPatch\Patcher\FunctionPatcher',
@@ -122,7 +125,10 @@ EOL
         );
     }
 
-    public function provide_source_blacklist()
+    /**
+     * @return string[][]
+     */
+    public function provide_source_blacklist(): array
     {
         return [
             [
@@ -145,13 +151,16 @@ EOL
     /**
      * @dataProvider provide_source_not_loaded
      */
-    public function test_not_loaded_function($source, $expected): void
+    public function test_not_loaded_function(string $source, string $expected): void
     {
         [$actual] = $this->obj->patch($source);
         $this->assertEquals($expected, $actual);
     }
 
-    public function provide_source_not_loaded()
+    /**
+     * @return string[][]
+     */
+    public function provide_source_not_loaded(): array
     {
         return [
             [

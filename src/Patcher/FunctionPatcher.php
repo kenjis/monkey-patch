@@ -26,9 +26,10 @@ use function strtolower;
 
 class FunctionPatcher extends AbstractPatcher
 {
+    /** @var bool */
     private static $lock_function_list = false;
 
-    /** @var array list of function names (in lower case) which you patch */
+    /** @var string[] list of function names (in lower case) which you patch */
     private static $whitelist = [
         'mt_rand',
         'rand',
@@ -48,7 +49,7 @@ class FunctionPatcher extends AbstractPatcher
         'openssl_random_pseudo_bytes',
     ];
 
-    /** @var array list of function names (in lower case) which can't be patched */
+    /** @var string[] list of function names (in lower case) which can't be patched */
     private static $blacklist = [
         // Segmentation fault
         'call_user_func_array',
@@ -85,13 +86,16 @@ class FunctionPatcher extends AbstractPatcher
         $this->node_visitor = new NodeVisitor();
     }
 
-    protected static function checkLock($error_msg): void
+    protected static function checkLock(string $error_msg): void
     {
         if (self::$lock_function_list) {
             throw new LogicException($error_msg);
         }
     }
 
+    /**
+     * @param string[] $function_list
+     */
     public static function addWhitelists(array $function_list): void
     {
         self::checkLock("You can't add to whitelist after initialization");
@@ -102,21 +106,21 @@ class FunctionPatcher extends AbstractPatcher
     }
 
     /**
-     * @return array
+     * @return string[]
      */
     public static function getFunctionWhitelist(): array
     {
         return self::$whitelist;
     }
 
-    public static function addBlacklist($function_name): void
+    public static function addBlacklist(string $function_name): void
     {
         self::checkLock("You can't add to blacklist after initialization");
 
         self::$blacklist[] = strtolower($function_name);
     }
 
-    public static function removeBlacklist($function_name): void
+    public static function removeBlacklist(string $function_name): void
     {
         self::checkLock("You can't remove from blacklist after initialization");
 

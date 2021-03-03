@@ -11,6 +11,9 @@ declare(strict_types=1);
  * @see https://github.com/kenjis/monkey-patch
  */
 
+/**
+ * @param string|int|null $status
+ */
 function exit__($status = null): void
 {
     $trace = debug_backtrace();

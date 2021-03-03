@@ -19,7 +19,7 @@ class ConstantPatcherTest extends TestCase
     /**
      * @dataProvider provide_source
      */
-    public function test_patch($source, $expected): void
+    public function test_patch(string $source, string $expected): void
     {
         [$actual] = $this->obj->patch($source);
         $this->assertEquals($expected, $actual);
@@ -28,13 +28,16 @@ class ConstantPatcherTest extends TestCase
     /**
      * @dataProvider provide_source_cannot_patch
      */
-    public function test_cannot_patch($source, $expected): void
+    public function test_cannot_patch(string $source, string $expected): void
     {
         [$actual] = $this->obj->patch($source);
         $this->assertEquals($expected, $actual);
     }
 
-    public function provide_source()
+    /**
+     * @return string[][]
+     */
+    public function provide_source(): array
     {
         return [
             [
@@ -52,7 +55,10 @@ EOL
         ];
     }
 
-    public function provide_source_cannot_patch()
+    /**
+     * @return string[][]
+     */
+    public function provide_source_cannot_patch(): array
     {
         return [
             [
