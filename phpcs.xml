@@ -20,6 +20,7 @@
     <file>tests</file>
     <exclude-pattern>*/tmp/*</exclude-pattern>
     <exclude-pattern>*/Fake/*</exclude-pattern>
+    <exclude-pattern>src/IncludeStream.php</exclude-pattern>
 
     <!-- PSR12 Coding Standard -->
     <rule ref="PSR12"/>
@@ -37,6 +38,10 @@
         <exclude name="SlevomatCodingStandard.Commenting.UselessInheritDocComment.UselessInheritDocComment"/>
         <exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint"/>
         <exclude name="SlevomatCodingStandard.ControlStructures.EarlyExit.EarlyExitNotUsed"/>
+
+        <exclude name="Squiz.NamingConventions.ValidVariableName.StringNotCamelCaps"/>
+        <exclude name="Squiz.NamingConventions.ValidVariableName.NotCamelCaps"/>
+        <exclude name="Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps"/>
     </rule>
 
     <!-- Additional Rules -->
