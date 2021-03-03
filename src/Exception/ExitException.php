@@ -2,10 +2,13 @@
 
 declare(strict_types=1);
 
-/**
- * Part of ci-phpunit-test
+/*
+ * Copyright (c) 2021 Kenji Suzuki
  *
- * @link       https://github.com/kenjis/ci-phpunit-test
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ *
+ * @see https://github.com/kenjis/monkey-patch
  */
 
 namespace Kenjis\MonkeyPatch\Exception;
