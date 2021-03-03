@@ -15,13 +15,6 @@ use Kenjis\MonkeyPatch\Exception\ExitException;
 use Kenjis\MonkeyPatch\MonkeyPatchManager;
 
 require __DIR__ . '/../vendor/autoload.php';
-
-/**
- * Part of ci-phpunit-test
- *
- * @link       https://github.com/kenjis/ci-phpunit-test
- */
-
 require __DIR__ . '/functions/exit__.php';
 
 const __GO_TO_ORIG__ = '__GO_TO_ORIG__';
