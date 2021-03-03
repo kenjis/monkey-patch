@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace Kenjis\MonkeyPatch\Patcher;
 
-require __DIR__ . '/MethodPatcher/NodeVisitor.php';
-require __DIR__ . '/MethodPatcher/PatchManager.php';
+require_once __DIR__ . '/MethodPatcher/NodeVisitor.php';
+require_once __DIR__ . '/MethodPatcher/PatchManager.php';
 
 use Kenjis\MonkeyPatch\Patcher\MethodPatcher\NodeVisitor;
 
