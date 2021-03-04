@@ -355,7 +355,7 @@ class MonkeyPatchManager
     }
 
     /**
-     * @return array{0: string, 1: bool}
+     * @return array{mixed, bool}
      */
     protected static function execPatchers(string $source): array
     {

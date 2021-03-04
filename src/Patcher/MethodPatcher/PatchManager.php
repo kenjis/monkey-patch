@@ -32,7 +32,7 @@ class PatchManager
     /** @var array<string, mixed> */
     private static $patches = [];
 
-    /** @var array<string, array{0: mixed[], 1: int}> */
+    /** @var array<string, array<int, array{0: mixed[], 1: int}>> */
     private static $expected_invocations = [];
 
     /** @var array<string, mixed> */

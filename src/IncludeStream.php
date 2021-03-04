@@ -20,6 +20,8 @@ declare(strict_types=1);
 
 namespace Kenjis\MonkeyPatch;
 
+use Kenjis\MonkeyPatch\Exception\LogicException;
+
 use function chgrp;
 use function chmod;
 use function chown;
@@ -323,6 +325,7 @@ class IncludeStream
     public function stream_metadata($path, $option, $value)
     {
         $this->unwrap();
+
         switch ($option) {
             case STREAM_META_TOUCH:
                 if (empty($value)) {
@@ -343,6 +346,8 @@ class IncludeStream
             case STREAM_META_ACCESS:
                 $result = chmod($path, $value);
                 break;
+            default:
+                throw new LogicException('$result is undefined.');
         }
 
         $this->wrap();

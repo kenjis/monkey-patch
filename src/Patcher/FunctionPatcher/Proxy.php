@@ -48,7 +48,7 @@ class Proxy
     /** @var array<string, mixed> */
     private static $patches_to_apply = [];
 
-    /** @var array<string, array{0: mixed[], 1: int}> */
+    /** @var array<string, array<int, array{0: mixed[], 1: int}>> */
     private static $expected_invocations = [];
 
     /** @var array<string, array<mixed>> */
@@ -161,7 +161,8 @@ class Proxy
     }
 
     /**
-     * @param mixed[] $arguments
+     * @param callable-string $function
+     * @param mixed[]         $arguments
      *
      * @return false|mixed
      */
@@ -177,6 +178,10 @@ class Proxy
                 MonkeyPatchManager::log(
                     'invoke_func: ' . $function . '() not patched (out of scope)'
                 );
+                if (! is_callable($function)) {
+                    throw new RuntimeException('Invalid function: ' . $function);
+                }
+
                 self::checkPassedByReference($function);
 
                 if (! is_callable($function)) {
@@ -211,6 +216,10 @@ class Proxy
         MonkeyPatchManager::log(
             'invoke_func: ' . $function . '() not patched (no patch)'
         );
+        if (! is_callable($function)) {
+            throw new RuntimeException('Invalid function: ' . $function);
+        }
+
         self::checkPassedByReference($function);
 
         if (! is_callable($function)) {
@@ -220,6 +229,9 @@ class Proxy
         return call_user_func_array($function, $arguments);
     }
 
+    /**
+     * @param callable-string $function
+     */
     protected static function checkPassedByReference(string $function): void
     {
         $ref_func = new ReflectionFunction($function);
@@ -271,7 +283,7 @@ class Proxy
     }
 
     /**
-     * @param string $name function name
+     * @param callable-string $name function name
      */
     protected static function isInternalFunction(string $name): bool
     {
