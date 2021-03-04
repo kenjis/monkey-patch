@@ -74,9 +74,9 @@ class NodeVisitor extends NodeVisitorAbstract
      * The MIT License (MIT)
      * Copyright (c) 2016 Badoo Development
      */
-    // Cannot rewrite constants that are used as default values in function arguments
     public function beforeParam(): void
     {
+        // Cannot rewrite constants that are used as default values in function arguments
         $this->disable_const_rewrite_level++;
     }
 
@@ -85,9 +85,9 @@ class NodeVisitor extends NodeVisitorAbstract
         $this->disable_const_rewrite_level--;
     }
 
-    // Cannot rewrite constants that are used as default values in constant declarations
     public function beforeConst(): void
     {
+        // Cannot rewrite constants that are used as default values in constant declarations
         $this->disable_const_rewrite_level++;
     }
 
@@ -96,9 +96,9 @@ class NodeVisitor extends NodeVisitorAbstract
         $this->disable_const_rewrite_level--;
     }
 
-    // Cannot rewrite constants that are used as default values in property declarations
     public function beforeStmt_PropertyProperty(): void
     {
+        // Cannot rewrite constants that are used as default values in property declarations
         $this->disable_const_rewrite_level++;
     }
 
@@ -107,9 +107,9 @@ class NodeVisitor extends NodeVisitorAbstract
         $this->disable_const_rewrite_level--;
     }
 
-    // Cannot rewrite constants that are used as default values in static variable declarations
     public function beforeStmt_StaticVar(): void
     {
+        // Cannot rewrite constants that are used as default values in static variable declarations
         $this->disable_const_rewrite_level++;
     }
 
