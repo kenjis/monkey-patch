@@ -12,10 +12,10 @@ class PathCheckerTest extends TestCase
     public static function tearDownAfterClass(): void
     {
         PathChecker::setIncludePaths(
-            [self::$appPath]
+            [__DIR__ . '/fixture/App']
         );
         PathChecker::setExcludePaths(
-            [__DIR__]
+            [__DIR__ . '/../src']
         );
     }
 
@@ -25,6 +25,9 @@ class PathCheckerTest extends TestCase
             [
                 self::$appPath . 'Patcher/',
             ]
+        );
+        PathChecker::setExcludePaths(
+            []
         );
         $test = PathChecker::check(self::$appPath . 'Patcher/ExitPatcher.php');
         $this->assertTrue($test);
