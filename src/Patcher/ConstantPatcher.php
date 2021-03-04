@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Kenjis\MonkeyPatch\Patcher;
 
-require __DIR__ . '/ConstantPatcher/NodeVisitor.php';
-require __DIR__ . '/ConstantPatcher/Proxy.php';
+require_once __DIR__ . '/ConstantPatcher/NodeVisitor.php';
+require_once __DIR__ . '/ConstantPatcher/Proxy.php';
 
 use Kenjis\MonkeyPatch\Patcher\ConstantPatcher\NodeVisitor;
 
