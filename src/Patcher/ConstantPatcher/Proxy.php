@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace Kenjis\MonkeyPatch\Patcher\ConstantPatcher;
 
-class_alias('Kenjis\MonkeyPatch\Patcher\ConstantPatcher\Proxy', '__ConstProxy__');
-
 use Kenjis\MonkeyPatch\MonkeyPatchManager;
 use Kenjis\MonkeyPatch\Patcher\Backtrace;
 use LogicException;

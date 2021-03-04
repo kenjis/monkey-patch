@@ -13,6 +13,9 @@ declare(strict_types=1);
 
 use Kenjis\MonkeyPatch\Exception\ExitException;
 use Kenjis\MonkeyPatch\MonkeyPatchManager;
+use Kenjis\MonkeyPatch\Patcher\ConstantPatcher\Proxy as ConstProxy;
+use Kenjis\MonkeyPatch\Patcher\FunctionPatcher\Proxy as FuncProxy;
+use Kenjis\MonkeyPatch\Patcher\MethodPatcher\PatchManager;
 
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/functions/exit__.php';
@@ -20,6 +23,9 @@ require __DIR__ . '/functions/exit__.php';
 const __GO_TO_ORIG__ = '__GO_TO_ORIG__';
 
 class_alias(MonkeyPatchManager::class, 'MonkeyPatchManager');
+class_alias(PatchManager::class, '__PatchManager__');
+class_alias(ConstProxy::class, '__ConstProxy__');
+class_alias(FuncProxy::class, '__FuncProxy__');
 
 // And you have to configure for your application
 MonkeyPatchManager::init([

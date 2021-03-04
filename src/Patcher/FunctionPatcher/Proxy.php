@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace Kenjis\MonkeyPatch\Patcher\FunctionPatcher;
 
-class_alias('Kenjis\MonkeyPatch\Patcher\FunctionPatcher\Proxy', '__FuncProxy__');
-
 use Kenjis\MonkeyPatch\Cache;
 use Kenjis\MonkeyPatch\Exception\RuntimeException;
 use Kenjis\MonkeyPatch\InvocationVerifier;

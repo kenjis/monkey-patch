@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace Kenjis\MonkeyPatch\Patcher\MethodPatcher;
 
-class_alias('Kenjis\MonkeyPatch\Patcher\MethodPatcher\PatchManager', '__PatchManager__');
-
 use Kenjis\MonkeyPatch\InvocationVerifier;
 use Kenjis\MonkeyPatch\MonkeyPatchManager;
 use Kenjis\MonkeyPatch\Patcher\Backtrace;
