@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Kenjis\MonkeyPatch\Patcher;
 
 use Kenjis\MonkeyPatch\MonkeyPatchManager;
+use Kenjis\MonkeyPatch\Patcher\ConstantPatcher\NodeVisitor;
 use PhpParser\Lexer;
 use PhpParser\NodeTraverser;
 use PhpParser\ParserFactory;
@@ -21,9 +22,15 @@ use PhpParser\PrettyPrinter;
 
 abstract class AbstractPatcher
 {
+    /** @var NodeVisitor */
     protected $node_visitor;
+
+    /** @var array<int, string> */
     public static $replacement;
 
+    /**
+     * @return array{0: string, 1: bool}
+     */
     public function patch(string $source): array
     {
         $patched = false;

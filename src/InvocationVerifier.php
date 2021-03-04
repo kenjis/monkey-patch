@@ -20,8 +20,8 @@ use function count;
 class InvocationVerifier
 {
     /**
-     * @param array<string, mixed> $expected_invocations
-     * @param array<string, mixed> $invocations
+     * @param array<string, array{0: mixed[], 1: int}> $expected_invocations
+     * @param array<string, mixed>                     $invocations
      */
     public static function verify(array $expected_invocations, array $invocations): void
     {

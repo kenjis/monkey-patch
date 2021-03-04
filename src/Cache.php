@@ -39,16 +39,31 @@ use const FILE_SKIP_EMPTY_LINES;
 
 class Cache
 {
+    /** @var string */
     private static $project_root;
+
+    /** @var string */
     private static $cache_dir;
+
+    /** @var string */
     private static $src_cache_dir;
+
+    /** @var string */
     private static $tmp_function_blacklist_file;
+
+    /** @var string */
     private static $tmp_function_whitelist_file;
+
+    /** @var string */
     private static $tmp_patcher_list_file;
+
+    /** @var string */
     private static $tmp_include_paths_file;
+
+    /** @var string */
     private static $tmp_exclude_paths_file;
 
-    public static function setProjectRootDir($dir): void
+    public static function setProjectRootDir(string $dir): void
     {
         self::$project_root = realpath($dir);
         if (self::$project_root === false) {
@@ -56,7 +71,7 @@ class Cache
         }
     }
 
-    public static function setCacheDir($dir): void
+    public static function setCacheDir(string $dir): void
     {
         self::createDir($dir);
         self::$cache_dir = realpath($dir);
@@ -83,7 +98,7 @@ class Cache
         return self::$cache_dir;
     }
 
-    public static function getSrcCacheFilePath($path)
+    public static function getSrcCacheFilePath(string $path)
     {
         $len = strlen(self::$project_root);
         $relative_path = substr($path, $len);
@@ -184,7 +199,7 @@ class Cache
         );
     }
 
-    public static function writeTmpFunctionWhitelist(array $functions)
+    public static function writeTmpFunctionWhitelist(array $functions): void
     {
         return self::writeTmpConfFile(
             'tmp_function_whitelist_file',
@@ -192,7 +207,7 @@ class Cache
         );
     }
 
-    public static function writeTmpPatcherList(array $patchers)
+    public static function writeTmpPatcherList(array $patchers): void
     {
         return self::writeTmpConfFile(
             'tmp_patcher_list_file',
@@ -200,7 +215,7 @@ class Cache
         );
     }
 
-    public static function writeTmpIncludePaths(array $paths)
+    public static function writeTmpIncludePaths(array $paths): void
     {
         return self::writeTmpConfFile(
             'tmp_include_paths_file',
@@ -208,7 +223,10 @@ class Cache
         );
     }
 
-    public static function writeTmpExcludePaths(array $paths)
+    /**
+     * @param array $paths
+     */
+    public static function writeTmpExcludePaths(array $paths): void
     {
         return self::writeTmpConfFile(
             'tmp_exclude_paths_file',
@@ -216,7 +234,10 @@ class Cache
         );
     }
 
-    protected static function getTmpConfFile($filename)
+    /**
+     * @return string[]|false
+     */
+    protected static function getTmpConfFile(string $filename)
     {
         if (is_readable(self::$$filename)) {
             return file(

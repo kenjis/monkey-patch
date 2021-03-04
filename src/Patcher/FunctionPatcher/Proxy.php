@@ -38,16 +38,16 @@ use function var_export;
 
 class Proxy
 {
-    /** @var array */
+    /** @var array<string, mixed> */
     private static $patches = [];
 
-    /** @var array */
+    /** @var array<string, mixed> */
     private static $patches_to_apply = [];
 
-    /** @var array */
+    /** @var array<string, array{0: mixed[], 1: int}> */
     private static $expected_invocations = [];
 
-    /** @var array */
+    /** @var array<string, array<mixed>> */
     private static $invocations = [];
 
     /**
@@ -58,7 +58,7 @@ class Proxy
      *
      * @param string  $function     function name
      * @param mixed   $return_value return value or callable
-     * @param ?string $class_name   class::method to apply this patch
+     * @param ?string $class_method class::method to apply this patch
      *
      * @throws LogicException
      */
@@ -157,6 +157,8 @@ class Proxy
     }
 
     /**
+     * @param mixed[] $arguments
+     *
      * @return false|mixed
      */
     public static function __callStatic(string $function, array $arguments)

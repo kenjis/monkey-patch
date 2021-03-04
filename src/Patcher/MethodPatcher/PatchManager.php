@@ -29,14 +29,19 @@ use function var_export;
 
 class PatchManager
 {
+    /** @var array<string, mixed> */
     private static $patches = [];
+
+    /** @var array<string, array{0: mixed[], 1: int}> */
     private static $expected_invocations = [];
+
+    /** @var array<string, mixed> */
     private static $invocations = [];
 
     /**
      * Set a method patch
      *
-     * @param array $params [method_name => return_value]
+     * @param array<string, mixed> $params [method_name => return_value]
      */
     public static function set(string $class, array $params): void
     {
@@ -53,7 +58,12 @@ class PatchManager
         self::$invocations = [];
     }
 
-    public static function getReturn($class, $method, $params)
+    /**
+     * @param mixed[] $params
+     *
+     * @return false|mixed|string
+     */
+    public static function getReturn(string $class, string $method, array $params)
     {
         if (MonkeyPatchManager::$debug) {
             $trace = debug_backtrace();
@@ -104,7 +114,10 @@ class PatchManager
         return $patch;
     }
 
-    public static function setExpectedInvocations($class_method, $times, $params): void
+    /**
+     * @param mixed[] $params
+     */
+    public static function setExpectedInvocations(string $class_method, int $times, array $params): void
     {
         self::$expected_invocations[$class_method][] = [$params, $times];
     }

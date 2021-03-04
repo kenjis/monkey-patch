@@ -26,6 +26,7 @@ use function ucfirst;
 
 class NodeVisitor extends NodeVisitorAbstract
 {
+    /** @var int */
     private $disable_const_rewrite_level = 0;
 
     public function enterNode(Node $node): void

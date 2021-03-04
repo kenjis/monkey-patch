@@ -21,13 +21,19 @@ use const PHP_VERSION;
 
 class Backtrace
 {
+    /** @var array<string, int> */
     private static $map = [
         'FunctionPatcher' => 1,
         'MethodPatcher'   => 0,
         'ConstantPatcher' => 0,
     ];
 
-    public static function getInfo($patcher, $backtrace)
+    /**
+     * @param array<int, array<string, mixed>> $backtrace
+     *
+     * @return array<string, mixed>
+     */
+    public static function getInfo(string $patcher, array $backtrace): array
     {
         if (! isset(self::$map[$patcher])) {
             throw new LogicException("No such a patcher: $patcher");

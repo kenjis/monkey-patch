@@ -20,7 +20,10 @@ use const T_EXIT;
 
 class ExitPatcher
 {
-    public static function patch($source)
+    /**
+     * @return array{0: string, 1: bool}
+     */
+    public static function patch(string $source): array
     {
         $tokens = token_get_all($source);
 

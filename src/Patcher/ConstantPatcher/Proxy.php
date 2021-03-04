@@ -28,7 +28,10 @@ use function strtolower;
 
 class Proxy
 {
+    /** @var array<string, mixed> */
     private static $patches = [];
+
+    /** @var array<string, string> */
     private static $patches_to_apply = [];
 
     /**
@@ -55,7 +58,7 @@ class Proxy
         self::$patches_to_apply = [];
     }
 
-    protected static function logInvocation($constant): void
+    protected static function logInvocation(string $constant): void
     {
         if (MonkeyPatchManager::$debug) {
             $trace = debug_backtrace();
@@ -71,7 +74,7 @@ class Proxy
         }
     }
 
-    protected static function checkCalledMethod($constant)
+    protected static function checkCalledMethod(string $constant): bool
     {
         $trace = debug_backtrace();
         $info = Backtrace::getInfo('ConstantPatcher', $trace);

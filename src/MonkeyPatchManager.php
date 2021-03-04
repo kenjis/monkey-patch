@@ -86,16 +86,19 @@ class MonkeyPatchManager
         self::$exit_exception_classname = $name;
     }
 
-    public static function getExitExceptionClassname()
+    public static function getExitExceptionClassname(): string
     {
         return self::$exit_exception_classname;
     }
 
-    public static function getPhpParser()
+    public static function getPhpParser(): int
     {
         return self::$php_parser;
     }
 
+    /**
+     * @param array<string, mixed> $config
+     */
     protected static function setDebug(array $config): void
     {
         if (isset($config['debug'])) {
@@ -111,6 +114,9 @@ class MonkeyPatchManager
         }
     }
 
+    /**
+     * @param array<string, mixed> $config
+     */
     protected static function setDir(array $config): void
     {
         if (! isset($config['root_dir'])) {
@@ -126,6 +132,9 @@ class MonkeyPatchManager
         self::setCacheDir($config['cache_dir']);
     }
 
+    /**
+     * @param array<string, mixed> $config
+     */
     protected static function setPaths(array $config): void
     {
         if (! isset($config['include_paths'])) {
@@ -139,6 +148,9 @@ class MonkeyPatchManager
         }
     }
 
+    /**
+     * @param array<string, mixed> $config
+     */
     public static function init(array $config): void
     {
         self::setDebug($config);
@@ -234,11 +246,14 @@ class MonkeyPatchManager
         }
     }
 
-    public static function isEnabled($patcher)
+    public static function isEnabled(string $patcher): bool
     {
         return in_array($patcher, self::$patcher_list);
     }
 
+    /**
+     * @param string[] $list
+     */
     public static function setPatcherList(array $list): void
     {
         if (self::$load_patchers) {
@@ -253,11 +268,17 @@ class MonkeyPatchManager
         Cache::setCacheDir($dir);
     }
 
+    /**
+     * @param string[] $dir_list
+     */
     public static function setIncludePaths(array $dir_list): void
     {
         PathChecker::setIncludePaths($dir_list);
     }
 
+    /**
+     * @param string[] $dir_list
+     */
     public static function setExcludePaths(array $dir_list): void
     {
         PathChecker::setExcludePaths($dir_list);
