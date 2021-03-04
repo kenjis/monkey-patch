@@ -3,6 +3,8 @@ parameters:
   paths:
     - src
     - tests
+  excludePaths:
+    - src/IncludeStream.php
   bootstrapFiles:
     - src/bootstrap.php
     - phpstan_constants.php
