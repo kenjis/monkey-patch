@@ -201,7 +201,7 @@ class Cache
 
     public static function writeTmpFunctionWhitelist(array $functions): void
     {
-        return self::writeTmpConfFile(
+        self::writeTmpConfFile(
             'tmp_function_whitelist_file',
             $functions
         );
@@ -209,7 +209,7 @@ class Cache
 
     public static function writeTmpPatcherList(array $patchers): void
     {
-        return self::writeTmpConfFile(
+        self::writeTmpConfFile(
             'tmp_patcher_list_file',
             $patchers
         );
@@ -217,7 +217,7 @@ class Cache
 
     public static function writeTmpIncludePaths(array $paths): void
     {
-        return self::writeTmpConfFile(
+        self::writeTmpConfFile(
             'tmp_include_paths_file',
             $paths
         );
@@ -228,7 +228,7 @@ class Cache
      */
     public static function writeTmpExcludePaths(array $paths): void
     {
-        return self::writeTmpConfFile(
+        self::writeTmpConfFile(
             'tmp_exclude_paths_file',
             $paths
         );
