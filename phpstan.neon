@@ -3,3 +3,5 @@ parameters:
   paths:
     - src
     - tests
+  bootstrapFiles:
+    - phpstan_constants.php
