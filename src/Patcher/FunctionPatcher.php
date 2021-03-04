@@ -13,15 +13,17 @@ declare(strict_types=1);
 
 namespace Kenjis\MonkeyPatch\Patcher;
 
-require __DIR__ . '/FunctionPatcher/NodeVisitor.php';
-require __DIR__ . '/FunctionPatcher/Proxy.php';
+require_once __DIR__ . '/FunctionPatcher/NodeVisitor.php';
+require_once __DIR__ . '/FunctionPatcher/Proxy.php';
 
 use Kenjis\MonkeyPatch\Patcher\FunctionPatcher\NodeVisitor;
 use LogicException;
 
 use function array_search;
 use function array_splice;
+use function assert;
 use function in_array;
+use function is_int;
 use function strtolower;
 
 class FunctionPatcher extends AbstractPatcher
@@ -125,6 +127,8 @@ class FunctionPatcher extends AbstractPatcher
         self::checkLock("You can't remove from blacklist after initialization");
 
         $key = array_search(strtolower($function_name), self::$blacklist);
+        assert(is_int($key));
+
         array_splice(self::$blacklist, $key, 1);
     }
 

@@ -27,7 +27,7 @@ class MonkeyPatch
      * @param string $function     function name
      * @param mixed  $return_value return value
      */
-    public static function patchFunction(string $function, $return_value, ?string $class_method = null): void
+    public static function patchFunction(string $function, $return_value, string $class_method = ''): void
     {
         Proxy::patch__($function, $return_value, $class_method);
     }

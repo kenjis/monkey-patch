@@ -17,6 +17,7 @@ use Kenjis\MonkeyPatch\Patcher\FunctionPatcher;
 use LogicException;
 use PhpParser\ParserFactory;
 
+use function assert;
 use function constant;
 use function date;
 use function explode;
@@ -26,7 +27,10 @@ use function file_put_contents;
 use function fopen;
 use function fwrite;
 use function in_array;
+use function is_array;
 use function is_readable;
+use function is_resource;
+use function is_string;
 use function microtime;
 use function rewind;
 use function substr;
@@ -46,8 +50,8 @@ class MonkeyPatchManager
      * The path to the log file if `$debug` is true.
      * Will be set in {@link MonkeyPatchManager::setDebug}.
      *
-     * @var string|null */
-    public static $log_file = null;
+     * @var string */
+    public static $log_file = __DIR__ . '/debug.log';
 
     /** @var bool */
     private static $load_patchers = false;
@@ -106,10 +110,6 @@ class MonkeyPatchManager
 
         if (isset($config['log_file'])) {
             self::$log_file = $config['log_file'];
-        }
-
-        if (self::$log_file === null) {
-            self::$log_file = __DIR__ . '/debug.log';
         }
     }
 
@@ -240,6 +240,8 @@ class MonkeyPatchManager
     protected static function addTmpFunctionBlacklist(): void
     {
         $list = file(Cache::getTmpFunctionBlacklistFile());
+        assert(is_array($list));
+
         foreach ($list as $function) {
             FunctionPatcher::addBlacklist(trim($function));
         }
@@ -311,11 +313,15 @@ class MonkeyPatchManager
         if ($cache_file) {
             self::log('cache_hit: ' . $path);
 
-            return fopen($cache_file, 'r');
+            $resource = fopen($cache_file, 'r');
+            assert(is_resource($resource));
+
+            return $resource;
         }
 
         self::log('cache_miss: ' . $path);
         $source = file_get_contents($path);
+        assert(is_string($source));
 
         [$new_source, $patched] = self::execPatchers($source);
 
@@ -324,6 +330,8 @@ class MonkeyPatchManager
         Cache::writeSrcCacheFile($path, $new_source);
 
         $resource = fopen('php://memory', 'rb+');
+        assert(is_resource($resource));
+
         fwrite($resource, $new_source);
         rewind($resource);
 

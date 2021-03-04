@@ -65,21 +65,24 @@ class Cache
 
     public static function setProjectRootDir(string $dir): void
     {
-        self::$project_root = realpath($dir);
-        if (self::$project_root === false) {
+        $project_root = realpath($dir);
+        if ($project_root === false) {
             throw new LogicException("No such directory: $dir");
         }
+
+        self::$project_root = $project_root;
     }
 
     public static function setCacheDir(string $dir): void
     {
         self::createDir($dir);
-        self::$cache_dir = realpath($dir);
 
-        if (self::$cache_dir === false) {
+        $cache_dir = realpath($dir);
+        if ($cache_dir === false) {
             throw new LogicException("No such directory: $dir");
         }
 
+        self::$cache_dir = $cache_dir;
         self::$src_cache_dir = self::$cache_dir . '/src';
         self::$tmp_function_whitelist_file =
             self::$cache_dir . '/conf/func_whiltelist.php';
@@ -98,17 +101,10 @@ class Cache
         return self::$cache_dir;
     }
 
-    /**
-     * @return false|string
-     */
-    public static function getSrcCacheFilePath(string $path)
+    public static function getSrcCacheFilePath(string $path): string
     {
         $len = strlen(self::$project_root);
         $relative_path = substr($path, $len);
-
-        if ($relative_path === false) {
-            return false;
-        }
 
         return self::$src_cache_dir . '/' . $relative_path;
     }

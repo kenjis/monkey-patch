@@ -20,13 +20,17 @@ use PhpParser\NodeVisitorAbstract;
 use PhpParser\ParserFactory;
 
 use function array_unshift;
+use function assert;
 
 class NodeVisitor extends NodeVisitorAbstract
 {
-    public function leaveNode(Node $node): void
+    /**
+     * @return array<Node>|int|Node|null
+     */
+    public function leaveNode(Node $node)
     {
         if (! $node instanceof ClassMethod) {
-            return;
+            return null;
         }
 
         $parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7);
@@ -41,11 +45,15 @@ class NodeVisitor extends NodeVisitorAbstract
             $ast = $parser->parse('<?php ' . MethodPatcher::CODE);
         }
 
+        assert($ast !== null);
+
         if ($node->stmts !== null) {
             array_unshift(
                 $node->stmts,
                 $ast[0]
             );
         }
+
+        return null;
     }
 }

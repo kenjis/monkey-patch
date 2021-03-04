@@ -6,7 +6,6 @@ namespace Kenjis\MonkeyPatch;
 
 use Kenjis\PhpUnitHelper\ReflectionHelper;
 use LogicException;
-use TypeError;
 
 use function file_exists;
 use function unlink;
@@ -38,13 +37,6 @@ class MonkeyPatchManagerTest extends TestCase
         self::setPrivateProperty(MonkeyPatchManager::class, 'log_file', self::$log_file);
 
         unlink(__DIR__ . '/monkey-patch-debug.log');
-    }
-
-    public function test_setCacheDir_error(): void
-    {
-        $this->expectException(TypeError::class);
-
-        MonkeyPatchManager::setCacheDir(null);
     }
 
     public function test_patch_error_cannot_read_file(): void

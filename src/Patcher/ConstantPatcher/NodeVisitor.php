@@ -29,15 +29,23 @@ class NodeVisitor extends NodeVisitorAbstract
     /** @var int */
     private $disable_const_rewrite_level = 0;
 
-    public function enterNode(Node $node): void
+    /**
+     * @return int|Node|null
+     */
+    public function enterNode(Node $node)
     {
         $callback = [$this, 'before' . ucfirst($node->getType())];
         if (is_callable($callback)) {
             call_user_func_array($callback, [$node]);
         }
+
+        return null;
     }
 
-    public function leaveNode(Node $node): void
+    /**
+     * @return array<Node>|int|Node|null
+     */
+    public function leaveNode(Node $node)
     {
         if (! ($node instanceof ConstFetch)) {
             $callback = [$this, 'rewrite' . ucfirst($node->getType())];
@@ -45,25 +53,27 @@ class NodeVisitor extends NodeVisitorAbstract
                 call_user_func_array($callback, [$node]);
             }
 
-            return;
+            return null;
         }
 
         if ($this->disable_const_rewrite_level > 0) {
-            return;
+            return null;
         }
 
         if (! ($node->name instanceof Name)) {
-            return;
+            return null;
         }
 
         if (! $node->name->isUnqualified()) {
-            return;
+            return null;
         }
 
         if (! ConstantPatcher::isBlacklisted((string) $node->name)) {
             $replacement = new FullyQualified('__ConstProxy__::get(\'' . (string) $node->name . '\')');
             $node->name = $replacement;
         }
+
+        return null;
     }
 
     /**

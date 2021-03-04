@@ -14,6 +14,8 @@ use PhpParser\ParserFactory;
 use PhpParser\PrettyPrinter;
 
 use function array_unshift;
+use function assert;
+use function is_array;
 
 class PhpParserTest extends TestCase
 {
@@ -41,6 +43,7 @@ CODE;
 
         $parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7);
         $ast = $parser->parse($code);
+        assert($ast !== null);
 
         $dumper = new NodeDumper();
 //        echo $dumper->dump($ast) . "\n";
@@ -78,20 +81,29 @@ CODE;
 
         $parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7);
         $ast = $parser->parse($code);
+        assert($ast !== null);
 
         $traverser = new NodeTraverser();
         $traverser->addVisitor(new class extends NodeVisitorAbstract {
-            public function leaveNode(Node $node): void
+            /**
+             * @return array<Node>|int|Node|null
+             */
+            public function leaveNode(Node $node)
             {
                 if ($node instanceof ClassMethod) {
+                    assert(is_array($node->stmts));
+
                     $parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7);
                     $ast = $parser->parse('<?php ' . MethodPatcher::CODE);
+                    assert($ast !== null);
 
                     array_unshift(
                         $node->stmts,
                         $ast[0]
                     );
                 }
+
+                return null;
             }
         });
         $ast = $traverser->traverse($ast);

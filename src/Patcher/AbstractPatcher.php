@@ -14,15 +14,17 @@ declare(strict_types=1);
 namespace Kenjis\MonkeyPatch\Patcher;
 
 use Kenjis\MonkeyPatch\MonkeyPatchManager;
-use Kenjis\MonkeyPatch\Patcher\ConstantPatcher\NodeVisitor;
 use PhpParser\Lexer;
 use PhpParser\NodeTraverser;
+use PhpParser\NodeVisitorAbstract;
 use PhpParser\ParserFactory;
 use PhpParser\PrettyPrinter;
 
+use function assert;
+
 abstract class AbstractPatcher
 {
-    /** @var NodeVisitor */
+    /** @var NodeVisitorAbstract */
     protected $node_visitor;
 
     /** @var array<int, string> */
@@ -46,10 +48,14 @@ abstract class AbstractPatcher
         $traverser->addVisitor($this->node_visitor);
 
         $ast_orig = $parser->parse($source);
+        assert($ast_orig !== null);
+
         $prettyPrinter = new PrettyPrinter\Standard();
         $source_ = $prettyPrinter->prettyPrintFile($ast_orig);
 
         $ast = $parser->parse($source);
+        assert($ast !== null);
+
         $traverser->traverse($ast);
 
         $new_source = $prettyPrinter->prettyPrintFile($ast);

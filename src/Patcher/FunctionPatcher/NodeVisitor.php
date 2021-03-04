@@ -29,18 +29,21 @@ use PhpParser\NodeVisitorAbstract;
 
 class NodeVisitor extends NodeVisitorAbstract
 {
-    public function leaveNode(Node $node): void
+    /**
+     * @return array<Node>|int|Node|null
+     */
+    public function leaveNode(Node $node)
     {
         if (! ($node instanceof FuncCall)) {
-            return;
+            return null;
         }
 
         if (! ($node->name instanceof Name)) {
-            return;
+            return null;
         }
 
         if (! $node->name->isUnqualified()) {
-            return;
+            return null;
         }
 
         if (
@@ -50,5 +53,7 @@ class NodeVisitor extends NodeVisitorAbstract
             $replacement = new FullyQualified('__FuncProxy__::' . (string) $node->name);
             $node->name = $replacement;
         }
+
+        return null;
     }
 }

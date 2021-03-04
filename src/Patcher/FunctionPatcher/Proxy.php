@@ -16,6 +16,7 @@ namespace Kenjis\MonkeyPatch\Patcher\FunctionPatcher;
 class_alias('Kenjis\MonkeyPatch\Patcher\FunctionPatcher\Proxy', '__FuncProxy__');
 
 use Kenjis\MonkeyPatch\Cache;
+use Kenjis\MonkeyPatch\Exception\RuntimeException;
 use Kenjis\MonkeyPatch\InvocationVerifier;
 use Kenjis\MonkeyPatch\MonkeyPatchManager;
 use Kenjis\MonkeyPatch\Patcher\Backtrace;
@@ -36,6 +37,9 @@ use function strpos;
 use function strtolower;
 use function var_export;
 
+/**
+ * @method static bool ksort(array &$array, int $flags = SORT_REGULAR)
+ */
 class Proxy
 {
     /** @var array<string, mixed> */
@@ -56,13 +60,13 @@ class Proxy
      * This method has '__' suffix, because if it matches real function name,
      * '__callStatic()' catch it.
      *
-     * @param string  $function     function name
-     * @param mixed   $return_value return value or callable
-     * @param ?string $class_method class::method to apply this patch
+     * @param string $function     function name
+     * @param mixed  $return_value return value or callable
+     * @param string $class_method class::method to apply this patch
      *
      * @throws LogicException
      */
-    public static function patch__(string $function, $return_value, ?string $class_method = null): void
+    public static function patch__(string $function, $return_value, string $class_method = ''): void
     {
         $function = strtolower($function);
 
@@ -175,6 +179,10 @@ class Proxy
                 );
                 self::checkPassedByReference($function);
 
+                if (! is_callable($function)) {
+                    throw new RuntimeException('Invalid function: ' . $function);
+                }
+
                 return call_user_func_array($function, $arguments);
             }
         }
@@ -190,6 +198,10 @@ class Proxy
                     return $return;
                 }
 
+                if (! is_callable($function)) {
+                    throw new RuntimeException('Invalid function: ' . $function);
+                }
+
                 return call_user_func_array($function, $arguments);
             }
 
@@ -200,6 +212,10 @@ class Proxy
             'invoke_func: ' . $function . '() not patched (no patch)'
         );
         self::checkPassedByReference($function);
+
+        if (! is_callable($function)) {
+            throw new RuntimeException('Invalid function: ' . $function);
+        }
 
         return call_user_func_array($function, $arguments);
     }

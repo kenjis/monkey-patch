@@ -214,7 +214,8 @@ EOL
     {
         ob_start();
         try {
-            Proxy::ksort([]);
+            $array = [];
+            Proxy::ksort($array);
         } catch (LogicException $e) {
             $this->assertStringContainsString(
                 "Can't patch on function 'ksort'.",
