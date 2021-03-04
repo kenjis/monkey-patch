@@ -33,12 +33,13 @@ MonkeyPatchManager::init([
     'cache_dir' => __DIR__ . '/../tmp/cache',
     // Directories to patch source files
     'include_paths' => [
-        __DIR__,
         __DIR__ . '/../tests/fixture/App',
     ],
     // Excluding directories to patch
     // If you want to patch files inside paths below, you must add the directory starting with '-'
-    'exclude_paths' => [],
+    'exclude_paths' => [
+        __DIR__,
+    ],
     // All patchers you use
     'patcher_list' => [
         'ExitPatcher',
