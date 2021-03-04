@@ -13,9 +13,6 @@ declare(strict_types=1);
 
 namespace Kenjis\MonkeyPatch\Patcher;
 
-require_once __DIR__ . '/FunctionPatcher/NodeVisitor.php';
-require_once __DIR__ . '/FunctionPatcher/Proxy.php';
-
 use Kenjis\MonkeyPatch\Patcher\FunctionPatcher\NodeVisitor;
 use LogicException;
 
