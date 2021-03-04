@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Kenjis\MonkeyPatch;
 
+use Kenjis\MonkeyPatch\Exception\ExitException;
 use Kenjis\MonkeyPatch\Patcher\FunctionPatcher;
 use LogicException;
 use PhpParser\ParserFactory;
@@ -57,8 +58,7 @@ class MonkeyPatchManager
     private static $load_patchers = false;
 
     /** @var class-string */
-    private static $exit_exception_classname =
-        'Kenjis\MonkeyPatch\Exception\ExitException';
+    private static $exit_exception_classname = ExitException::class;
 
     /** @var string[] list of patcher classname */
     private static $patcher_list = [
