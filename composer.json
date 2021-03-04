@@ -1,6 +1,9 @@
 {
     "name": "kenjis/monkey-patch",
-    "description": "",
+    "type": "library",
+    "description": "Monkey patching for exit(), functions, methods, and constants",
+    "keywords": ["monkey patch","monkey patching","mock","testing"],
+    "homepage": "https://github.com/kenjis/monkey-patch",
     "license": "MIT",
     "authors": [
         {
