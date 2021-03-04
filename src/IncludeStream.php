@@ -172,8 +172,17 @@ class IncludeStream
     {
         $this->unwrap();
         if ($flags & STREAM_URL_STAT_QUIET) {
-            set_error_handler(static function (): void {
-            });
+            set_error_handler(
+                static function (
+                    int $errno,
+                    string $errstr,
+                    string $errfile = null,
+                    int $errline = null,
+                    array $errcontext = null
+                ): bool {
+                    return true;
+                }
+            );
         }
 
         $result = stat($path);

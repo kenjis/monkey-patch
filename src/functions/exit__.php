@@ -11,6 +11,8 @@ declare(strict_types=1);
  * @see https://github.com/kenjis/monkey-patch
  */
 
+use Kenjis\MonkeyPatch\Exception\ExitException;
+
 /**
  * @param string|int|null $status
  */
@@ -29,6 +31,10 @@ function exit__($status = null): void
     }
 
     $exception_name = Kenjis\MonkeyPatch\MonkeyPatchManager::getExitExceptionClassname();
+
+    /**
+     * @var ExitException
+     */
     $exception = new $exception_name($message);
     $exception->file = $file;
     $exception->line = $line;

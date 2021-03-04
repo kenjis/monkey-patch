@@ -145,9 +145,7 @@ class Cache
     public static function writeSrcCacheFile(string $path, string $source): void
     {
         $cache_file = self::getSrcCacheFilePath($path);
-        if ($cache_file !== false) {
-            self::writeCacheFile($cache_file, $source);
-        }
+        self::writeCacheFile($cache_file, $source);
     }
 
     /**
