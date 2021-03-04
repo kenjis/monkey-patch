@@ -29,13 +29,16 @@ use const SORT_STRING;
 
 class PathChecker
 {
+    /** @var string[] */
     private static $include_paths = [];
+
+    /** @var string[] */
     private static $exclude_paths = [];
 
     /**
-     * @param array $paths directory or file path
+     * @param string[] $paths directory or file path
      *
-     * @return array
+     * @return string[]
      *
      * @throws RuntimeException
      */
@@ -69,27 +72,39 @@ class PathChecker
         return $new_paths;
     }
 
+    /**
+     * @param string[] $dir
+     */
     public static function setIncludePaths(array $dir): void
     {
         self::$include_paths = self::normalizePaths($dir);
     }
 
+    /**
+     * @param string[] $dir
+     */
     public static function setExcludePaths(array $dir): void
     {
         self::$exclude_paths = self::normalizePaths($dir);
     }
 
-    public static function getIncludePaths()
+    /**
+     * @return string[]
+     */
+    public static function getIncludePaths(): array
     {
         return self::$include_paths;
     }
 
-    public static function getExcludePaths()
+    /**
+     * @return string[]
+     */
+    public static function getExcludePaths(): array
     {
         return self::$exclude_paths;
     }
 
-    public static function check(string $path)
+    public static function check(string $path): bool
     {
         $path = (string) realpath($path);
 

@@ -93,11 +93,14 @@ class Cache
             self::$cache_dir . '/conf/exclude_paths.php';
     }
 
-    public static function getCacheDir()
+    public static function getCacheDir(): string
     {
         return self::$cache_dir;
     }
 
+    /**
+     * @return false|string
+     */
     public static function getSrcCacheFilePath(string $path)
     {
         $len = strlen(self::$project_root);
@@ -164,7 +167,7 @@ class Cache
         file_put_contents($path, $contents);
     }
 
-    public static function getTmpFunctionBlacklistFile()
+    public static function getTmpFunctionBlacklistFile(): string
     {
         return self::$tmp_function_blacklist_file;
     }
@@ -181,7 +184,7 @@ class Cache
         touch(self::$tmp_function_blacklist_file);
     }
 
-    public static function appendTmpFunctionBlacklist($function): void
+    public static function appendTmpFunctionBlacklist(string $function): void
     {
         file_put_contents(
             self::getTmpFunctionBlacklistFile(),
@@ -190,7 +193,10 @@ class Cache
         );
     }
 
-    protected static function writeTmpConfFile($filename, array $list): void
+    /**
+     * @param string[] $list
+     */
+    protected static function writeTmpConfFile(string $filename, array $list): void
     {
         $contents = implode("\n", $list);
         file_put_contents(
@@ -199,6 +205,9 @@ class Cache
         );
     }
 
+    /**
+     * @param string[] $functions
+     */
     public static function writeTmpFunctionWhitelist(array $functions): void
     {
         self::writeTmpConfFile(
@@ -207,6 +216,9 @@ class Cache
         );
     }
 
+    /**
+     * @param string[] $patchers
+     */
     public static function writeTmpPatcherList(array $patchers): void
     {
         self::writeTmpConfFile(
@@ -215,6 +227,9 @@ class Cache
         );
     }
 
+    /**
+     * @param string[] $paths
+     */
     public static function writeTmpIncludePaths(array $paths): void
     {
         self::writeTmpConfFile(
@@ -224,7 +239,7 @@ class Cache
     }
 
     /**
-     * @param array $paths
+     * @param string[] $paths
      */
     public static function writeTmpExcludePaths(array $paths): void
     {
@@ -249,21 +264,33 @@ class Cache
         return [];
     }
 
+    /**
+     * @return string[]|false
+     */
     public static function getTmpFunctionWhitelist()
     {
         return self::getTmpConfFile('tmp_function_whitelist_file');
     }
 
+    /**
+     * @return string[]|false
+     */
     public static function getTmpPatcherList()
     {
         return self::getTmpConfFile('tmp_patcher_list_file');
     }
 
+    /**
+     * @return string[]|false
+     */
     public static function getTmpIncludePaths()
     {
         return self::getTmpConfFile('tmp_include_paths_file');
     }
 
+    /**
+     * @return string[]|false
+     */
     public static function getTmpExcludePaths()
     {
         return self::getTmpConfFile('tmp_exclude_paths_file');
