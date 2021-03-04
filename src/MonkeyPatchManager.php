@@ -26,7 +26,6 @@ use function file_put_contents;
 use function fopen;
 use function fwrite;
 use function in_array;
-use function is_null;
 use function is_readable;
 use function microtime;
 use function rewind;
@@ -109,7 +108,7 @@ class MonkeyPatchManager
             self::$log_file = $config['log_file'];
         }
 
-        if (is_null(self::$log_file)) {
+        if (self::$log_file === null) {
             self::$log_file = __DIR__ . '/debug.log';
         }
     }
