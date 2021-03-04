@@ -18,7 +18,6 @@ use Kenjis\MonkeyPatch\Patcher\Backtrace;
 use LogicException;
 
 use function array_key_exists;
-use function class_alias;
 use function constant;
 use function debug_backtrace;
 use function strpos;

@@ -19,7 +19,6 @@ use Kenjis\MonkeyPatch\Patcher\Backtrace;
 
 use function array_key_exists;
 use function call_user_func_array;
-use function class_alias;
 use function debug_backtrace;
 use function is_callable;
 use function rtrim;
