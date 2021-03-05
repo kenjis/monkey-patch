@@ -115,20 +115,13 @@ You could change return value of patched function using PHP closure:
         MonkeyPatch::patchFunction(
             'function_exists',
             function ($function) {
-                if ($function === 'random_bytes')
-                {
+                if ($function === 'random_bytes') {
                     return true;
-                }
-                elseif ($function === 'openssl_random_pseudo_bytes')
-                {
+                } elseif ($function === 'openssl_random_pseudo_bytes') {
                     return false;
-                }
-                elseif ($function === 'mcrypt_create_iv')
-                {
+                } elseif ($function === 'mcrypt_create_iv') {
                     return false;
-                }
-                else
-                {
+                } else {
                     return __GO_TO_ORIG__;
                 }
             },
@@ -138,7 +131,7 @@ You could change return value of patched function using PHP closure:
 
 #### Patch Other Functions
 
-If you want to patch other functions, you can add them to [functions_to_patch](hhttps://github.com/kenjis/monkey-patch/blob/a11e1f227234dadeae2460d29b9c8ca6e91c88de/src/bootstrap.php#L56-L59) in `MonkeyPatchManager::init()`.
+If you want to patch other functions, you can add them to [functions_to_patch](https://github.com/kenjis/monkey-patch/blob/a11e1f227234dadeae2460d29b9c8ca6e91c88de/src/bootstrap.php#L56-L59) in `MonkeyPatchManager::init()`.
 
 But there are a few known limitations:
 
@@ -163,7 +156,7 @@ This patcher allows replacement of methods in user-defined classes.
     }
 ~~~
 
-[MonkeyPatch::patchMethod()]() replaces `get_category_list()` method in `Category_model`, and it will return `[(object) ['name' => 'Nothing']]` in the test method.
+`MonkeyPatch::patchMethod()` replaces `get_category_list()` method in `Category_model`, and it will return `[(object) ['name' => 'Nothing']]` in the test method.
 
 ### Patch Constants
 
