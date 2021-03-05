@@ -2,7 +2,7 @@
     "name": "kenjis/monkey-patch",
     "type": "library",
     "description": "Monkey patching for exit(), functions, methods, and constants",
-    "keywords": ["monkey patch","monkey patching","mock","testing"],
+    "keywords": ["monkey patch","monkey patching","mock","testing","phpunit"],
     "homepage": "https://github.com/kenjis/monkey-patch",
     "license": "MIT",
     "authors": [
