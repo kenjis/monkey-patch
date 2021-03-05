@@ -17,6 +17,7 @@ on:
       - 'tests/**'
       - composer.json
       - phpunit.xml.dist
+      - '.github/workflows/**'
   workflow_dispatch:
 
 jobs:

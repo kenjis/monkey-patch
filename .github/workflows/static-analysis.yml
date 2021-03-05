@@ -19,6 +19,7 @@ on:
       - phpmd.xml
       - phpstan.neon
       - psalm.xml
+      - '.github/workflows/**'
   workflow_dispatch:
 
 jobs:
