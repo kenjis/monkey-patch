@@ -29,7 +29,7 @@ class PatchManager
     /** @var array<string, mixed> */
     private static $patches = [];
 
-    /** @var array<string, array<int, array{0: mixed[], 1: int|string}>> */
+    /** @var array<string, array<int, array{0: ?mixed[], 1: int|string}>> */
     private static $expected_invocations = [];
 
     /** @var array<string, mixed> */
@@ -113,9 +113,9 @@ class PatchManager
 
     /**
      * @param int|string $times
-     * @param mixed[]    $params
+     * @param ?mixed[]   $params
      */
-    public static function setExpectedInvocations(string $class_method, $times, array $params): void
+    public static function setExpectedInvocations(string $class_method, $times, ?array $params): void
     {
         self::$expected_invocations[$class_method][] = [$params, $times];
     }
