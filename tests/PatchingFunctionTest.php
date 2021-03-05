@@ -77,15 +77,15 @@ class PatchingFunctionTest extends TestCase
 
     public function test_openssl_random_pseudo_bytes_null(): void
     {
-        $this->expectException(TypeError::class);
-
         MonkeyPatch::patchFunction(
             'openssl_random_pseudo_bytes',
             null,
             PatchingFunction::class
         );
 
-        $this->obj->openssl_random_pseudo_bytes();
+        $output = $this->obj->openssl_random_pseudo_bytes();
+
+        $this->assertSame("\n1\n", $output);
     }
 
     public function test_openssl_random_pseudo_bytes_callable(): void
