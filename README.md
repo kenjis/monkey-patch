@@ -48,6 +48,7 @@ $ composer require --dev kenjis/monkey-patch
 ### Configure
 
 - To enable monkey patching, add [the content of the bootstrap](https://github.com/kenjis/monkey-patch/blob/1.x/src/bootstrap.php) in your PHPUnit bootstrap file.
+  - Set [MonkeyPatchManager::init()](https://github.com/kenjis/monkey-patch/blob/f5b1839a01c0c3cd56f4873e8c307b0583a5526b/src/bootstrap.php#L31-L61) arguments.
 - To verify invocations, use the [MonkeyPatchTrait](https://github.com/kenjis/monkey-patch/blob/1.x/src/Traits/MonkeyPatchTrait.php) in your TestCase class.
 
 ### Convert `exit()` to Exception
