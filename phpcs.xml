@@ -76,4 +76,7 @@
     <rule ref="SlevomatCodingStandard.Classes.UnusedPrivateElements.WriteOnlyProperty">
         <exclude-pattern>src/Cache.php</exclude-pattern>
     </rule>
+    <rule ref="SlevomatCodingStandard.Classes.SuperfluousTraitNaming.SuperfluousSuffix">
+        <exclude-pattern>src/Traits/MonkeyPatchTrait.php</exclude-pattern>
+    </rule>
 </ruleset>
