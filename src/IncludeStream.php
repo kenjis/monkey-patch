@@ -69,6 +69,9 @@ use const STREAM_OPTION_READ_TIMEOUT;
 use const STREAM_OPTION_WRITE_BUFFER;
 use const STREAM_URL_STAT_QUIET;
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 class IncludeStream
 {
     public const STREAM_OPEN_FOR_INCLUDE = 128;

@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Kenjis\MonkeyPatch\Traits;
 
 use Kenjis\MonkeyPatch\MonkeyPatch;
-use MonkeyPatchManager;
+use Kenjis\MonkeyPatch\MonkeyPatchManager;
 use PHPUnit\Framework\ExpectationFailedException;
 
 use function class_exists;

@@ -8,17 +8,19 @@
     "authors": [
         {
             "name": "Kenji Suzuki",
-            "email": "kenji.uui@gmail.com"
+            "homepage": "https://github.com/kenjis"
         }
     ],
     "require": {
-        "php": "^7.3 || ^8.0"
+        "php": "^7.3 || ^8.0",
+        "ext-openssl": "*",
+        "ext-tokenizer": "*",
+        "phpunit/phpunit": "^9.5",
+        "nikic/php-parser": "^4.10"
     },
     "require-dev": {
         "bamarni/composer-bin-plugin": "^1.4",
-        "phpunit/phpunit": "^9.5",
-        "kenjis/phpunit-helper": "^1.0",
-        "nikic/php-parser": "^4.10"
+        "kenjis/phpunit-helper": "^1.1"
     },
     "autoload": {
         "psr-4": {
@@ -51,7 +53,8 @@
         ],
         "sa": [
             "./vendor/bin/phpstan analyse -c phpstan.neon",
-            "psalm --show-info=true"
+            "psalm --show-info=true",
+            "./vendor/bin/phpmd src text ./phpmd.xml"
         ],
         "tests": [
             "@cs",

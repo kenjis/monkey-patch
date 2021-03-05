@@ -75,7 +75,7 @@ class MonkeyPatchManager
         }
 
         $time = date('Y-m-d H:i:s');
-        [$usec, $sec] = explode(' ', microtime());
+        [$usec] = explode(' ', microtime());
         $usec = substr($usec, 1);
         $log = "[$time $usec] $message\n";
         file_put_contents(self::$log_file, $log, FILE_APPEND);
@@ -325,7 +325,7 @@ class MonkeyPatchManager
         $source = file_get_contents($path);
         assert(is_string($source));
 
-        [$new_source, $patched] = self::execPatchers($source);
+        [$new_source] = self::execPatchers($source);
 
         // Write to cache file
         self::log('write_cache: ' . $path);
