@@ -12,6 +12,7 @@ declare(strict_types=1);
  */
 
 use Kenjis\MonkeyPatch\Exception\ExitException;
+use Kenjis\MonkeyPatch\MonkeyPatchManager;
 
 /**
  * @param string|int|null $status
@@ -30,7 +31,7 @@ function exit__($status = null): void
         $message = 'exit() called in ' . $class . '::' . $method . '()';
     }
 
-    $exception_name = Kenjis\MonkeyPatch\MonkeyPatchManager::getExitExceptionClassname();
+    $exception_name = MonkeyPatchManager::getExitExceptionClassname();
 
     /**
      * @var ExitException
