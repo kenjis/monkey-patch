@@ -53,7 +53,8 @@
         ],
         "sa": [
             "./vendor/bin/phpstan analyse -c phpstan.neon",
-            "psalm --show-info=true"
+            "psalm --show-info=true",
+            "./vendor/bin/phpmd src text ./phpmd.xml"
         ],
         "tests": [
             "@cs",
