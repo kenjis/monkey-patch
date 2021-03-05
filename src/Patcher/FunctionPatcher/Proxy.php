@@ -45,7 +45,7 @@ class Proxy
     /** @var array<string, mixed> */
     private static $patches_to_apply = [];
 
-    /** @var array<string, array<int, array{0: mixed[], 1: int|string}>> */
+    /** @var array<string, array<int, array{0: ?mixed[], 1: int|string}>> */
     private static $expected_invocations = [];
 
     /** @var array<string, array<mixed>> */
@@ -101,9 +101,9 @@ class Proxy
 
     /**
      * @param int|string $times
-     * @param mixed[]    $params
+     * @param ?mixed[]   $params
      */
-    public static function setExpectedInvocations(string $function, $times, array $params): void
+    public static function setExpectedInvocations(string $function, $times, ?array $params): void
     {
         self::$expected_invocations[strtolower($function)][] = [$params, $times];
     }
