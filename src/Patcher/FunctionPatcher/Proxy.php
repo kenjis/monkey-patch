@@ -304,6 +304,10 @@ class Proxy
     ) {
         $function = 'openssl_random_pseudo_bytes';
         $arguments = [$length, $crypto_strong];
+
+        // @TODO add checkCalledMethod()
+        //       backtrace offset differs
+
         self::logInvocation($function, $arguments);
         self::$invocations[$function][] = $arguments;
 
