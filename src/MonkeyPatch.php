@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Kenjis\MonkeyPatch;
 
 use Kenjis\MonkeyPatch\Patcher\ConstantPatcher\Proxy as ConstProxy;
-use Kenjis\MonkeyPatch\Patcher\FunctionPatcher\Proxy;
+use Kenjis\MonkeyPatch\Patcher\FunctionPatcher\Proxy as FuncProxy;
 use Kenjis\MonkeyPatch\Patcher\MethodPatcher\PatchManager;
 
 use function strpos;
@@ -29,7 +29,7 @@ class MonkeyPatch
      */
     public static function patchFunction(string $function, $return_value, string $class_method = ''): void
     {
-        Proxy::patch__($function, $return_value, $class_method);
+        FuncProxy::patch__($function, $return_value, $class_method);
     }
 
     /**
@@ -37,7 +37,7 @@ class MonkeyPatch
      */
     public static function resetFunctions(): void
     {
-        Proxy::reset__();
+        FuncProxy::reset__();
     }
 
     /**
@@ -79,10 +79,10 @@ class MonkeyPatch
     protected static function getClassname(string $class_method): string
     {
         if (strpos($class_method, '::') === false) {
-            return 'Kenjis\MonkeyPatch\Patcher\FunctionPatcher\Proxy';
+            return FuncProxy::class;
         }
 
-        return 'Kenjis\MonkeyPatch\Patcher\MethodPatcher\PatchManager';
+        return PatchManager::class;
     }
 
     /**
@@ -150,7 +150,7 @@ class MonkeyPatch
      */
     public static function verifyFunctionInvocations(): void
     {
-        Proxy::verifyInvocations();
+        FuncProxy::verifyInvocations();
     }
 
     /**
