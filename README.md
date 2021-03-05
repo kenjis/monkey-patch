@@ -9,6 +9,26 @@ This provides four monkey patchers.
 - `MethodPatcher`: Patches Methods in User-defined Classes
 - `ConstantPatcher`: Changes Constant Values
 
+## Table of Contents
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Configure](#configure)
+  - [Convert `exit()` to Exception](#convert-exit-to-exception)
+  - [Patch Functions](#patch-functions)
+    - [Change Return Value](#change-return-value)
+    - [Patch Other Functions](#patch-other-functions)
+  - [Patch Methods in User-defined Classes](#patch-methods-in-user-defined-classes)
+  - [Patch Constants](#patch-constants)
+- [Class Reference](#class-reference)
+- [License](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Requirements
 
 - PHP 7.3 or later
@@ -84,11 +104,9 @@ So by default we can replace only a dozen pre-defined functions in [FunctionPatc
 
 [MonkeyPatch::patchFunction()]() replaces PHP native function `mt_rand()` in `Welcome::index` method, and it will return `100` in the test method.
 
-See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v3.0.0/application/tests/controllers/Patching_on_function_test.php).
-
 **Note:** If you call `MonkeyPatch::patchFunction()` without 3rd argument, all the functions (located in `include_paths` and not in `exclude_paths`) called in the test method will be replaced. So, for example, a function in CodeIgniter code might be replaced and it results in unexpected outcome.
 
-**Change Return Value**
+#### Change Return Value
 
 You could change return value of patched function using PHP closure:
 
@@ -117,9 +135,7 @@ You could change return value of patched function using PHP closure:
         );
 ~~~
 
-See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v3.0.0/application/tests/controllers/Patching_on_function_test.php#L59-L80).
-
-**Patch Other Functions**
+#### Patch Other Functions
 
 If you want to patch other functions, you can add them to [functions_to_patch](https://github.com/kenjis/ci-phpunit-test/blob/a4f8ceb4b96650529565be23a77f5dfcda8d4cce/application/tests/Bootstrap.php#L369-L371) in `MonkeyPatchManager::init()`.
 
