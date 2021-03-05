@@ -90,7 +90,7 @@ This patcher allows replacement of global functions that can't be mocked by PHPU
 
 But it has a few limitations. Some functions can't be replaced and it might cause errors.
 
-So by default we can replace only a dozen pre-defined functions in [FunctionPatcher](https://github.com/kenjis/ci-phpunit-test/blob/a4f8ceb4b96650529565be23a77f5dfcda8d4cce/application/tests/_ci_phpunit_test/patcher/3.x/Patcher/FunctionPatcher.php#L27-L44).
+So by default we can replace only a dozen pre-defined functions in [FunctionPatcher](https://github.com/kenjis/monkey-patch/blob/a11e1f227234dadeae2460d29b9c8ca6e91c88de/src/Patcher/FunctionPatcher.php#L31-L49).
 
 ~~~php
     public function test_index()
@@ -103,7 +103,7 @@ So by default we can replace only a dozen pre-defined functions in [FunctionPatc
     }
 ~~~
 
-[MonkeyPatch::patchFunction()]() replaces PHP native function `mt_rand()` in `Welcome::index` method, and it will return `100` in the test method.
+`MonkeyPatch::patchFunction()` replaces PHP native function `mt_rand()` in `Welcome::index` method, and it will return `100` in the test method.
 
 **Note:** If you call `MonkeyPatch::patchFunction()` without 3rd argument, all the functions (located in `include_paths` and not in `exclude_paths`) called in the test method will be replaced. So, for example, a function in CodeIgniter code might be replaced and it results in unexpected outcome.
 
@@ -138,7 +138,7 @@ You could change return value of patched function using PHP closure:
 
 #### Patch Other Functions
 
-If you want to patch other functions, you can add them to [functions_to_patch](https://github.com/kenjis/ci-phpunit-test/blob/a4f8ceb4b96650529565be23a77f5dfcda8d4cce/application/tests/Bootstrap.php#L369-L371) in `MonkeyPatchManager::init()`.
+If you want to patch other functions, you can add them to [functions_to_patch](hhttps://github.com/kenjis/monkey-patch/blob/a11e1f227234dadeae2460d29b9c8ca6e91c88de/src/bootstrap.php#L56-L59) in `MonkeyPatchManager::init()`.
 
 But there are a few known limitations:
 
@@ -180,7 +180,7 @@ This patcher allows replacement of constant value.
     }
 ~~~
 
-[MonkeyPatch::patchConstant()]() replaces the return value of the constant `ENVIRONMENT` in `Welcome::index` method.
+``MonkeyPatch::patchConstant()` replaces the return value of the constant `ENVIRONMENT` in `Welcome::index` method.
 
 There are a few known limitations:
 
