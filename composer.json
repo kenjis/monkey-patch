@@ -20,7 +20,7 @@
     },
     "require-dev": {
         "bamarni/composer-bin-plugin": "^1.4",
-        "kenjis/phpunit-helper": "^1.0"
+        "kenjis/phpunit-helper": "^1.1"
     },
     "autoload": {
         "psr-4": {
