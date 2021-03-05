@@ -149,6 +149,8 @@ class MonkeyPatchManager
 
     /**
      * @param array<string, mixed> $config
+     *
+     * @codeCoverageIgnore
      */
     public static function init(array $config): void
     {
@@ -338,6 +340,9 @@ class MonkeyPatchManager
         return $resource;
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     protected static function loadPatchers(): void
     {
         if (self::$load_patchers) {
