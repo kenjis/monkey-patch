@@ -165,10 +165,14 @@ This patcher allows replacement of constant value.
 ~~~php
     public function test_index()
     {
-        MonkeyPatch::patchConstant('ENVIRONMENT', 'development', Welcome::class . '::index');
-        
+        MonkeyPatch::patchConstant(
+            'ENVIRONMENT', 
+            'development', 
+            Welcome::class . '::index'
+        );
+
         $output = $this->request('GET', 'welcome/index');
-        
+
         $this->assertContains('development', $output);
     }
 ~~~
