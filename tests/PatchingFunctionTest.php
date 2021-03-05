@@ -242,35 +242,41 @@ class PatchingFunctionTest extends TestCase
 
     public function test_header(): void
     {
+        MonkeyPatch::resetFunctions();
+
         MonkeyPatch::patchFunction(
             'header',
             null,
             PatchingFunction::class . '::header'
         );
-
-        $output = $this->obj->header();
-
         MonkeyPatch::verifyInvokedOnce(
             'header',
             ['Location: http://www.example.com/']
         );
+
+        $output = $this->obj->header();
+
         $this->assertEquals('call header()', $output);
+        MonkeyPatch::verifyFunctionInvocations();
     }
 
     public function test_setcookie(): void
     {
+        MonkeyPatch::resetFunctions();
+
         MonkeyPatch::patchFunction(
             'setcookie',
             true,
             PatchingFunction::class . '::setcookie'
         );
-
-        $output = $this->obj->setcookie();
-
         MonkeyPatch::verifyInvokedOnce(
             'setcookie',
             ['TestCookie', 'something from somewhere']
         );
+
+        $output = $this->obj->setcookie();
+
         $this->assertEquals('call setcookie()', $output);
+        MonkeyPatch::verifyFunctionInvocations();
     }
 }
