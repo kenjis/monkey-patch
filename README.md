@@ -105,7 +105,7 @@ So by default we can replace only a dozen pre-defined functions in [FunctionPatc
 
 `MonkeyPatch::patchFunction()` replaces PHP native function `mt_rand()` in `Welcome::index` method, and it will return `100` in the test method.
 
-**Note:** If you call `MonkeyPatch::patchFunction()` without 3rd argument, all the functions (located in `include_paths` and not in `exclude_paths`) called in the test method will be replaced. So, for example, a function in CodeIgniter code might be replaced and it results in unexpected outcome.
+**Note:** If you call `MonkeyPatch::patchFunction()` without 3rd argument, all the functions (located in `include_paths` and not in `exclude_paths`) called in the test method will be replaced. So, for example, a function in your library code might be replaced, and it results in an unexpected outcome.
 
 #### Change Return Value
 
@@ -177,7 +177,7 @@ This patcher allows replacement of constant value.
     }
 ~~~
 
-``MonkeyPatch::patchConstant()` replaces the return value of the constant `ENVIRONMENT` in `Welcome::index` method.
+`MonkeyPatch::patchConstant()` replaces the return value of the constant `ENVIRONMENT` in `Welcome::index` method.
 
 There are a few known limitations:
 
