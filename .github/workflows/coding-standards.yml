@@ -7,6 +7,7 @@ on:
     paths:
       - 'src/**'
       - 'tests/**'
+      - composer.json
       - phpcs.xml
   pull_request:
     branches:
@@ -14,6 +15,7 @@ on:
     paths:
       - 'src/**'
       - 'tests/**'
+      - composer.json
       - phpcs.xml
       - '.github/workflows/**'
   workflow_dispatch:

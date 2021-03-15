@@ -7,6 +7,7 @@ on:
     paths:
       - 'src/**'
       - 'tests/**'
+      - composer.json
       - phpmd.xml
       - phpstan.neon
       - psalm.xml
@@ -16,6 +17,7 @@ on:
     paths:
       - 'src/**'
       - 'tests/**'
+      - composer.json
       - phpmd.xml
       - phpstan.neon
       - psalm.xml
@@ -72,6 +74,13 @@ jobs:
         id: composer-cache
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
 
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
       - name: Install dependencies
         run: composer install --no-interaction --no-progress --prefer-dist
 
@@ -124,6 +133,13 @@ jobs:
         id: composer-cache
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
 
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
       - name: Install dependencies
         run: composer install --no-interaction --no-progress --prefer-dist
 
@@ -146,6 +162,13 @@ jobs:
       - name: Get composer cache directory
         id: composer-cache
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
 
       - name: Install dependencies
         run: |
