@@ -286,6 +286,10 @@ class IncludeStream
 
     public function stream_lock($operation)
     {
+        if ($operation === '0' || $operation === 0) {
+            $operation = LOCK_EX;
+        }
+
         return flock($this->resource, $operation);
     }
 
