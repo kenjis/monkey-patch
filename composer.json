@@ -15,7 +15,7 @@
         "php": "^7.3 || ^8.0",
         "ext-openssl": "*",
         "ext-tokenizer": "*",
-        "nikic/php-parser": "^4.10"
+        "nikic/php-parser": "^5.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",

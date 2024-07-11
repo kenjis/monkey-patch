@@ -14,10 +14,10 @@ declare(strict_types=1);
 namespace Kenjis\MonkeyPatch\Patcher;
 
 use Kenjis\MonkeyPatch\MonkeyPatchManager;
-use PhpParser\Lexer;
 use PhpParser\NodeTraverser;
 use PhpParser\NodeVisitorAbstract;
 use PhpParser\ParserFactory;
+use PhpParser\PhpVersion;
 use PhpParser\PrettyPrinter;
 
 use function assert;
@@ -38,10 +38,10 @@ abstract class AbstractPatcher
         $patched = false;
 
         $parser = (new ParserFactory())
-            ->create(
-                MonkeyPatchManager::getPhpParser(),
-                new Lexer(
-                    ['usedAttributes' => ['startTokenPos', 'endTokenPos']]
+            ->createForVersion(
+                PhpVersion::fromComponents(
+                    MonkeyPatchManager::getPhpVersionMajor(),
+                    MonkeyPatchManager::getPhpVersionMinor()
                 )
             );
         $traverser = new NodeTraverser();

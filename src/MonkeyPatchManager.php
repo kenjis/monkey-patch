@@ -45,7 +45,10 @@ class MonkeyPatchManager
     public static $debug = false;
 
     /** @var int */
-    private static $php_parser = ParserFactory::PREFER_PHP5;
+    private static $php_version_major = 5;
+
+    /** @var int */
+    private static $php_version_minor = 1;
 
     /**
      * The path to the log file if `$debug` is true.
@@ -94,9 +97,28 @@ class MonkeyPatchManager
         return self::$exit_exception_classname;
     }
 
-    public static function getPhpParser(): int
+    public static function getPhpVersionMajor(): int
     {
-        return self::$php_parser;
+        return self::$php_version_major;
+    }
+
+    public static function getPhpVersionMinor(): int
+    {
+        return self::$php_version_minor;
+    }
+
+    /**
+     * @param array<string, mixed> $config
+     */
+    protected static function setPhpVersion(array $config): void
+    {
+        if (isset($config['php_version_major'])) {
+            self::$php_version_major = $config['php_version_major'];
+        }
+
+        if (isset($config['php_version_minor'])) {
+            self::$php_version_minor = $config['php_version_minor'];
+        }
     }
 
     /**
@@ -155,11 +177,7 @@ class MonkeyPatchManager
     public static function init(array $config): void
     {
         self::setDebug($config);
-
-        if (isset($config['php_parser'])) {
-            self::$php_parser = constant('PhpParser\ParserFactory::' . $config['php_parser']);
-        }
-
+        self::setPhpVersion($config);
         self::setDir($config);
         self::setPaths($config);
 

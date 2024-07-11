@@ -32,8 +32,9 @@ MonkeyPatchManager::init([
     // If you want debug log, set `debug` true, and optionally you can set the log file path
     'debug' => true,
     'log_file' => __DIR__ . '/../tmp/monkey-patch-debug.log',
-    // PHP Parser: PREFER_PHP7, PREFER_PHP5, ONLY_PHP7, ONLY_PHP5
-    'php_parser' => 'PREFER_PHP7',
+    // PHP version
+    'php_version_major' => 7,
+    'php_version_minor' => 0,
     // Project root directory
     'root_dir' => __DIR__ . '/../',
     'cache_dir' => __DIR__ . '/../tmp/cache',
